@@ -37,6 +37,10 @@ async function build(prod) {
 		logLevel: "info",
 		sourcemap: prod ? false : 'inline',
 		treeShaking: true,
+		alias: {
+			react: "preact/compat",
+			"react-dom": "preact"
+		},
 		outfile: 'build/plugin/main.js',
 	}).catch(() => process.exit(1));
 
