@@ -1,10 +1,11 @@
 import { Literal, Literals } from "expression/literal";
-import { CURRENT_FILE_CONTEXT, Lit } from "./markdown";
+import { CURRENT_FILE_CONTEXT, Lit, SETTINGS_CONTEXT } from "./markdown";
 import { useInterning, useStableCallback } from "./hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { Pager } from "./paging";
 
-import { VNode, h, isValidElement } from "preact";
+import { Fragment, VNode, h, isValidElement } from "preact";
 import { Reducer, useContext, useMemo, useReducer, Dispatch } from "preact/hooks";
 
 /** Handler for table state updates. If you do not want to handle the event and let the table handle it, just call `next`.  */
@@ -125,7 +126,39 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
         });
     }, [props.rows, sorts]);
 
-    return (
+    // pagination
+    const settings = useContext(SETTINGS_CONTEXT);
+    const canPage = useMemo(
+        () => settings.defaultPagingEnabled || !!props.paging || false,
+        [settings.defaultPagingEnabled, props.paging]
+    );
+    const startOffset = useMemo(() => {
+        if (props.paging === undefined) {
+            if (settings.defaultPagingEnabled) return ((props.page ?? 0) * settings.defaultPageSize)
+            else return 0;
+        } else if (props.paging == false) return 0;
+        else if (props.paging == true) return ((props.page ?? 0) * settings.defaultPageSize);
+        else return ((props.page ?? 0) * props.paging);
+    }, [settings.defaultPageSize, settings.defaultPagingEnabled, props.paging, props.page]);
+    const endOffset = useMemo(() => {
+        if(props.paging === undefined) {
+            if(settings.defaultPagingEnabled) return startOffset + settings.defaultPageSize;
+            else return rows.length;
+        } else if(props.paging === false)
+            return rows.length;
+        else if(props.paging === true) return startOffset + settings.defaultPageSize;
+        else return (startOffset + props.paging)
+    }, [props.page, props.paging, props.rows, settings.defaultPageSize, startOffset, settings.defaultPagingEnabled])
+
+    return (  
+    <Fragment>
+        {canPage && 
+        <Pager<T, TableAction> {...{
+            page: props.page,
+            pageSize: typeof props.paging == "number" ? props.paging : undefined,
+            data: rows,
+            columns: columns,
+            dispatch: props.dispatch}} />}
         <table className="datacore-table">
             <thead>
                 <tr className="datacore-table-header-row">
@@ -140,11 +173,12 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
                 </tr>
             </thead>
             <tbody>
-                {rows.map((row) => (
+                {rows.slice(startOffset, endOffset).map((row) => (
                     <TableRow row={row} columns={columns} />
                 ))}
             </tbody>
         </table>
+    </Fragment>
     );
 }
 
