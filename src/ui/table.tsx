@@ -295,7 +295,8 @@ export const DEFAULT_TABLE_COMPARATOR: <T>(a: Literal, b: Literal, ao: T, bo: T)
 
 export type TableAction =
     | { type: "reset-all" }
-    | { type: "sort-column"; column: string; direction?: "ascending" | "descending" };
+    | { type: "sort-column"; column: string; direction?: "ascending" | "descending" }
+    | { type: "paging"; newPage: number };
 
 /** Central reducer which updates table state predictably. */
 export function tableReducer<T>(state: TableState<T>, action: TableAction): TableState<T> {
@@ -322,6 +323,11 @@ export function tableReducer<T>(state: TableState<T>, action: TableAction): Tabl
                         },
                     ],
                 };
+            }
+        case "paging":
+            return {
+                ...state, 
+                page: action.newPage
             }
     }
 
