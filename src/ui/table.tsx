@@ -160,13 +160,6 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
 
     return (  
     <Fragment>
-        {canPage && 
-        <Pager<T, TableAction> {...{
-            page: props.page,
-            pageSize: typeof props.paging == "number" ? props.paging : undefined,
-            data: rows,
-            columns: columns,
-            dispatch: props.dispatch}} />}
         <table className="datacore-table">
             <thead>
                 <tr className="datacore-table-header-row">
@@ -186,6 +179,13 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
                 ))}
             </tbody>
         </table>
+        {canPage && 
+        <Pager<T, TableAction> {...{
+            page: props.page,
+            pageSize: typeof props.paging == "number" ? props.paging : undefined,
+            data: rows,
+            columns: columns,
+            dispatch: props.dispatch}} />}
     </Fragment>
     );
 }
