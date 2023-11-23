@@ -6,6 +6,7 @@ import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons"
 
 import { VNode, h, isValidElement } from "preact";
 import { Reducer, useContext, useMemo, useReducer, Dispatch } from "preact/hooks";
+import { Filter, useFilterDispatch } from "./common/filter";
 
 /** Handler for table state updates. If you do not want to handle the event and let the table handle it, just call `next`.  */
 export type TableActionHandler = (action: TableAction, next: Dispatch<TableAction>) => any;
@@ -133,26 +134,33 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
         });
     }, [props.rows, sorts]);
 
+		// filtering
+		const [filterState, filterDispatch] = useFilterDispatch<T>({
+			filter: "",
+			allItems: rows,
+			filteredItems: rows
+		})
+
     return (
-        <table className="datacore-table">
-            <thead>
-                <tr className="datacore-table-header-row">
-                    {columns.map((col) => (
-                        <TableHeaderCell
-                            column={col}
-                            sort={props.sortOn?.find((s) => s.id == col.id)?.direction}
-                            sortable={(props.sortable ?? true) && (col.sortable ?? true)}
-                            dispatch={props.dispatch}
-                        />
+            <table className="datacore-table">
+                <thead>
+                    <tr className="datacore-table-header-row">
+                        {columns.map((col) => (
+                            <TableHeaderCell
+                                column={col}
+                                sort={props.sortOn?.find((s) => s.id == col.id)?.direction}
+                                sortable={(props.sortable ?? true) && (col.sortable ?? true)}
+                                dispatch={props.dispatch}
+                            />
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {filterState.filteredItems.map((row) => (
+                        <TableRow row={row} columns={columns} />
                     ))}
-                </tr>
-            </thead>
-            <tbody>
-                {rows.map((row) => (
-                    <TableRow row={row} columns={columns} />
-                ))}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
     );
 }
 
