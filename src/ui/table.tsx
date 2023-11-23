@@ -174,9 +174,9 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
                 </tr>
             </thead>
             <tbody>
-                {rows.slice(startOffset, endOffset).map((row) => (
-                    <TableRow row={row} columns={columns} />
-                ))}
+								{usePagination(rows, typeof props.paging == "number" ? props.paging : settings.defaultPageSize, canPage, props.page).map((row) => (
+										<TableRow row={row} columns={columns} />
+								))}
             </tbody>
         </table>
         {canPage && 
