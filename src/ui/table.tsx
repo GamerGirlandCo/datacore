@@ -141,6 +141,10 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
         [settings.defaultPagingEnabled, props.paging]
     );
 
+		const pagedRows = useMemo(() => {
+			return usePagination(rows, typeof props.paging == "number" ? props.paging : settings.defaultPageSize, canPage, props.page)
+		}, [rows, canPage, props.page, props.paging])
+
     return (  
     <Fragment>
         <table className="datacore-table">
@@ -157,7 +161,7 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
                 </tr>
             </thead>
             <tbody>
-								{usePagination(rows, typeof props.paging == "number" ? props.paging : settings.defaultPageSize, canPage, props.page).map((row) => (
+								{pagedRows.map((row) => (
 										<TableRow row={row} columns={columns} />
 								))}
             </tbody>
