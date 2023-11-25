@@ -140,23 +140,6 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
         () => settings.defaultPagingEnabled || !!props.paging || false,
         [settings.defaultPagingEnabled, props.paging]
     );
-    const startOffset = useMemo(() => {
-        if (props.paging === undefined) {
-            if (settings.defaultPagingEnabled) return ((props.page ?? 0) * settings.defaultPageSize)
-            else return 0;
-        } else if (props.paging == false) return 0;
-        else if (props.paging == true) return ((props.page ?? 0) * settings.defaultPageSize);
-        else return ((props.page ?? 0) * props.paging);
-    }, [settings.defaultPageSize, settings.defaultPagingEnabled, props.paging, props.page]);
-    const endOffset = useMemo(() => {
-        if(props.paging === undefined) {
-            if(settings.defaultPagingEnabled) return startOffset + settings.defaultPageSize;
-            else return rows.length;
-        } else if(props.paging === false)
-            return rows.length;
-        else if(props.paging === true) return startOffset + settings.defaultPageSize;
-        else return (startOffset + props.paging)
-    }, [props.page, props.paging, props.rows, settings.defaultPageSize, startOffset, settings.defaultPagingEnabled])
 
     return (  
     <Fragment>
