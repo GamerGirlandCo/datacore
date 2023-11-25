@@ -1,6 +1,6 @@
 import { Literal, Literals } from "expression/literal";
 import { CURRENT_FILE_CONTEXT, Lit, SETTINGS_CONTEXT } from "./markdown";
-import { useInterning, useStableCallback } from "./hooks";
+import { useInterning, usePagination, useStableCallback } from "./hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { Pager } from "./paging";

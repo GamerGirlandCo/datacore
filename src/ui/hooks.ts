@@ -158,3 +158,14 @@ export function useStableCallback<T>(callback: T, deps: any[]): T {
         [ref]
     ) as T;
 }
+export function usePagination<T>(items: T[], pageSize: number, enabled: boolean, page?: number) {
+    const startOffset = useMemo(() => {
+        return (page ?? 0) * pageSize;
+    }, [pageSize, page]);
+    const endOffset = useMemo(() => {
+        return startOffset + pageSize;
+    }, [page, items, pageSize, startOffset]);
+    // return useMemo(() => {
+        return enabled ? items.slice(startOffset, endOffset) : items;
+    // }, [enabled, items, pageSize, page]);
+}
