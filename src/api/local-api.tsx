@@ -16,6 +16,7 @@ import { Result } from "./result";
 import Parsimmon from "parsimmon";
 import { TableProps, TableView } from "ui/table";
 import { h } from "preact";
+import { COMPONENTS } from "./components";
 
 /** Local API provided to specific codeblocks when they are executing. */
 export class DatacoreLocalApi {
@@ -55,6 +56,9 @@ export class DatacoreLocalApi {
     get app(): App {
         return this.core.app;
     }
+		get components(): typeof COMPONENTS {
+			return COMPONENTS;
+		}
 
     ///////////////////////
     // General utilities //
