@@ -124,12 +124,19 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
         });
     }, [props.rows, sorts]);
 
+		// filtering
+		const [filterState, filterDispatch] = useFilterDispatch<T>({
+			filter: "",
+			allItems: rows,
+			filteredItems: rows
+		})
+
     // Then group if grouping is set.
     const groupedRows: Grouping<T> = useMemo(() => {
-        if (groups == undefined || groups.length == 0) return Grouping.leaf(rows);
+        if (groups == undefined || groups.length == 0) return Grouping.leaf(filterState.filteredItems);
 
         return Grouping.groupBy(
-            rows,
+            filterState.filteredItems,
             groups.map((g) => ({
                 flatten: g!.flatten,
                 value: g!.value,
@@ -138,11 +145,11 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
                     : undefined,
             }))
         );
-    }, [rows, groups]);
+    }, [rows, groups, filterState]);
 
     // And finally apply pagination.
     const pageSize = typeof props.paging === "number" ? props.paging : settings.defaultPageSize;
-    const totalPages = Math.max(1, Math.ceil(rows.length / pageSize));
+    const totalPages = Math.max(1, Math.ceil(filterState.filteredItems.length / pageSize));
 
     // Slice the groups to respect paging.
     const pagedGroupedRows = useMemo(() => {
@@ -153,6 +160,8 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
     }, [props.paging, props.page, pageSize, groupedRows]);
 
     return (
+			<>
+				<Filter<T> initialFilter={filterState.filter}  dispatch={filterDispatch} state={filterState} />
         <table className="datacore-table">
             <thead>
                 <tr className="datacore-table-header-row">
@@ -184,6 +193,7 @@ export function ControlledTableView<T>(props: TableState<T> & { rows: T[]; dispa
                 </tfoot>
             )}
         </table>
+			</>
     );
 }
 
