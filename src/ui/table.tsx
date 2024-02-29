@@ -8,6 +8,7 @@ import { Fragment, VNode, h, isValidElement } from "preact";
 import { Reducer, useContext, useMemo, useReducer, Dispatch } from "preact/hooks";
 import { Grouping } from "./grouping";
 import { PagingControl } from "./paging";
+import { Filter, useFilterDispatch } from "./common/filter";
 
 /** Contains only the actual relevant state for a table (i.e., excluding initial props). */
 export interface TableState<T> {
