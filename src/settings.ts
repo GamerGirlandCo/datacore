@@ -36,6 +36,9 @@ export interface Settings {
     indexInlineFields: boolean;
     /** Whether to index list and task item text and states. Indexing lists & tasks requires some additional regex parsing which makes indexing modestly slower. */
     indexListItems: boolean;
+
+		/** Whether to check task items off recursively in datacore views */
+		recursiveTaskCompletion: boolean;
 }
 
 /** Default settings for the plugin. */
@@ -58,4 +61,5 @@ export const DEFAULT_SETTINGS: Readonly<Settings> = Object.freeze<Settings>({
 
     indexInlineFields: true,
     indexListItems: true,
+		recursiveTaskCompletion: false
 });
