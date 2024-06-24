@@ -39,6 +39,9 @@ export interface Settings {
 
 		/** Whether to check task items off recursively in datacore views */
 		recursiveTaskCompletion: boolean;
+		
+		/** Name of field in which to store completion date/time */
+		taskCompletionTextField: string;
 }
 
 /** Default settings for the plugin. */
@@ -61,5 +64,6 @@ export const DEFAULT_SETTINGS: Readonly<Settings> = Object.freeze<Settings>({
 
     indexInlineFields: true,
     indexListItems: true,
-		recursiveTaskCompletion: false
+		recursiveTaskCompletion: false,
+		taskCompletionTextField: "completedAt"
 });
