@@ -155,6 +155,8 @@ export function markdownSourceImport(
     ///////////
 
     // All list items in lists. Start with a simple trivial pass.
+		const contentRegex = /^[\t\f\v ]*[\-+\*]\s(\[.\]\s)?/;
+		const markerRegex = /^(>?\s?)*(\t|\s)*/g;
     const listItems = new BTree<number, ListItemData>(undefined, (a, b) => a - b);
     for (const list of metadata.listItems || []) {
         const line = lines[list.position.start.line];
