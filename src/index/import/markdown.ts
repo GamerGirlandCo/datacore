@@ -177,7 +177,6 @@ export function markdownSourceImport(
             list.task,
             text
         );
-
         listItems.set(item.start, item);
     }
 
@@ -562,7 +561,6 @@ export type BlockData = ListBlockData | CodeblockData | DatablockData | BaseBloc
 export class ListItemData {
     public metadata: Metadata = new Metadata();
     public elements: ListItemData[] = [];
-
     public constructor(
         public start: number,
         public end: number,
