@@ -295,7 +295,7 @@ export class DatacoreLocalApi {
     /** Renders an obsidian lucide icon. */
     public Icon = Icon;
 
-		public TaskList = TaskList;
+    public TaskList = TaskList;
 
     ///////////
     // Views //

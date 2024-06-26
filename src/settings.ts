@@ -37,11 +37,11 @@ export interface Settings {
     /** Whether to index list and task item text and states. Indexing lists & tasks requires some additional regex parsing which makes indexing modestly slower. */
     indexListItems: boolean;
 
-		/** Whether to check task items off recursively in datacore views */
-		recursiveTaskCompletion: boolean;
-		
-		/** Name of field in which to store completion date/time */
-		taskCompletionTextField: string;
+    /** Whether to check task items off recursively in datacore views */
+    recursiveTaskCompletion: boolean;
+
+    /** Name of field in which to store completion date/time */
+    taskCompletionTextField: string;
 }
 
 /** Default settings for the plugin. */
