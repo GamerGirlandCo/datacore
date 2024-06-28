@@ -23,6 +23,7 @@ import { Button, Checkbox, Icon, Slider, Switch, Textbox, VanillaSelect } from "
 import { VanillaTable } from "./ui/views/table";
 import { Callout } from "./ui/views/callout";
 import { TaskList } from "./ui/views/task";
+import { Card } from "./ui/views/card";
 import { DataArray } from "./data-array";
 import { Coerce } from "./coerce";
 import { ScriptCache } from "./script-cache";
@@ -295,13 +296,14 @@ export class DatacoreLocalApi {
     /** Renders an obsidian lucide icon. */
     public Icon = Icon;
 
-    public TaskList = TaskList;
 
     ///////////
     // Views //
     ///////////
 
+    public TaskList = TaskList;
     public VanillaTable = VanillaTable;
+		public Card = Card;
 
     /////////////////////////
     // Interative elements //
