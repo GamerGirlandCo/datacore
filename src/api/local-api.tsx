@@ -298,14 +298,13 @@ export class DatacoreLocalApi {
     /** Renders an obsidian lucide icon. */
     public Icon = Icon;
 
-
     ///////////
     // Views //
     ///////////
 
     public TaskList = TaskList;
     public VanillaTable = VanillaTable;
-		public Card = Card;
+    public Card = Card;
 
     /////////////////////////
     // Interative elements //

@@ -43,7 +43,7 @@ export interface Settings {
     /** Name of the inline field in which to store completion date/time */
     taskCompletionText: string;
 
-		/** If enabled, automatic completions will use emoji shorthand ✅ YYYY-MM-DD instead of [completion:: date]. */
+    /** If enabled, automatic completions will use emoji shorthand ✅ YYYY-MM-DD instead of [completion:: date]. */
     taskCompletionUseEmojiShorthand: boolean;
 }
 
