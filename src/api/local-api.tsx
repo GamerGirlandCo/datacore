@@ -91,8 +91,6 @@ export class DatacoreLocalApi {
      * return { MyElement };
      * ```
      */
-
-
     public async require(path: string | Link): Promise<any> {
         const result = await this.scriptCache.load(path, { dc: this });
         return result.orElseThrow();
