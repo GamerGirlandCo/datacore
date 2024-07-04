@@ -163,6 +163,14 @@ class GeneralSettingsTab extends PluginSettingTab {
                     await this.plugin.updateSettings({ scrollOnPageChange: value });
                 });
             });
+        new Setting(this.containerEl)
+            .setName("Enable Javascript")
+            .setDesc("Whether Javascript codeblocks will be evaluated.")
+            .addToggle((toggle) => {
+                toggle.setValue(this.plugin.settings.enableJs).onChange(async (value) => {
+                    await this.plugin.updateSettings({ enableJs: value });
+                });
+            });
 
         this.containerEl.createEl("h2", { text: "Formatting" });
 
@@ -264,13 +272,13 @@ class GeneralSettingsTab extends PluginSettingTab {
                     await this.plugin.updateSettings({ maxRecursiveRenderDepth: parsed });
                 });
             });
-				new Setting(this.containerEl)
-						.setName("Recursive subtask completion")
-						.setDesc("Whether or not subtasks should be completed along with their parent in datacore task views")
-						.addToggle((tb) => {
-							tb.setValue(this.plugin.settings.recursiveTaskCompletion).onChange(async (val) => {
-								await this.plugin.updateSettings({recursiveTaskCompletion: val})
-							})
-						})
+        new Setting(this.containerEl)
+            .setName("Recursive subtask completion")
+            .setDesc("Whether or not subtasks should be completed along with their parent in datacore task views")
+            .addToggle((tb) => {
+                tb.setValue(this.plugin.settings.recursiveTaskCompletion).onChange(async (val) => {
+                    await this.plugin.updateSettings({ recursiveTaskCompletion: val });
+                });
+            });
     }
 }
