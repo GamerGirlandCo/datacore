@@ -2,7 +2,7 @@
  * @module ui
  */
 import { Fragment, FunctionComponent, VNode } from "preact";
-import { Dispatch, Reducer, useContext, useEffect, useMemo, useRef } from "preact/hooks";
+import { Dispatch, Reducer, useContext, useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { ChangeEvent, useReducer } from "preact/compat";
 import Select, { ActionMeta } from "react-select";
 import { useStableCallback } from "../hooks";
@@ -14,6 +14,7 @@ import { MarkdownListItem, MarkdownTaskItem } from "index/types/markdown";
 import { BooleanEditable } from "./boolean-field";
 import { ProgressEditable } from "./progress-field";
 import { RatingEditable } from "./rating";
+import { useFinalizer } from "utils/fields";
 
 import "./fields.css";
 
@@ -287,17 +288,7 @@ export function NumberEditable(props: EditableState<number>) {
         [value.current, state.content, state.updater, state.isEditing]
     );
 
-    const finalize = async () => {
-        dispatch({
-            type: "commit",
-            newValue: value.current,
-        });
-        dispatch({
-            type: "editing-toggled",
-            newValue: false,
-        });
-    };
-
+    const finalize = useFinalizer(value.current, dispatch) 
     const onInput = useStableCallback(
         async (e: KeyboardEvent) => {
             if (e.key === "Enter") {
@@ -344,16 +335,7 @@ export function TextEditable(props: EditableState<string> & { markdown?: boolean
         dispatch({ type: "content-changed", newValue: props.content });
     }, [props.content]);
 
-    const finalize = async () => {
-        dispatch({
-            type: "commit",
-            newValue: text.current,
-        });
-        dispatch({
-            type: "editing-toggled",
-            newValue: false,
-        });
-    };
+    const finalize = useFinalizer(text.current, dispatch) 
     const onInput = useStableCallback(
         async (e: KeyboardEvent) => {
             if (props.inline) {
@@ -408,16 +390,18 @@ export function UncontrolledTextEditable({
     dispatch?: Dispatch<EditableAction<string>>;
 		onInput?: (e: KeyboardEvent) => unknown;
 }) {
+		const [txt, setText] = useState(text)
     const onChangeCb = useStableCallback(
         async (evt: ChangeEvent) => {
-            dispatch && dispatch({ newValue: (evt.currentTarget as HTMLTextAreaElement).value, type: "content-changed" });
+					setText((evt.currentTarget as HTMLTextAreaElement).value)
+            dispatch && dispatch({ newValue: txt, type: "content-changed" });
         },
         [text, dispatch]
     );
 
     return !inline ? (
         <textarea className="datacore-editable" onChange={onChangeCb} onKeyUp={onInput}>
-            {text}
+            {txt}
         </textarea>
     ) : (
         <input className="datacore-editable" type="text" onChange={onChangeCb} onKeyUp={onInput} />
