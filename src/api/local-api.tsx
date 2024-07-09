@@ -27,6 +27,8 @@ import { Card } from "./ui/views/card";
 import { DataArray } from "./data-array";
 import { Coerce } from "./coerce";
 import { ScriptCache } from "./script-cache";
+import { useSetField } from "utils/fields";
+import { EditableFieldCheckbox, EditableTextField } from "ui/fields/editable-fields";
 
 /** Local API provided to specific codeblocks when they are executing.
  * @group Core
@@ -163,7 +165,9 @@ export class DatacoreLocalApi {
     public useRef = hooks.useRef;
     public useInterning = useInterning;
 
-    /** Memoize the input automatically and process it using a DataArray; returns a vanilla array back. */
+		public useSetField = useSetField;
+
+    /** Memoize the input automatically and process it using a Data Array; returns a vanilla array back. */
     public useArray<T, U>(input: T[] | DataArray<T>, process: (data: DataArray<T>) => DataArray<U>, deps?: any[]): U[] {
         return hooks.useMemo(() => process(DataArray.wrap(input)).array(), [input, ...(deps ?? [])]);
     }
@@ -315,4 +319,10 @@ export class DatacoreLocalApi {
     public Slider = Slider;
     public Switch = Switch;
     public VanillaSelect = VanillaSelect;
+
+    /////////////////////////
+		//    field editors    //
+		/////////////////////////
+		public EditableFieldCheckbox = EditableFieldCheckbox;
+		public EditableFieldTextbox = EditableTextField;
 }
