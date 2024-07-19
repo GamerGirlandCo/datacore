@@ -3,7 +3,7 @@ import { Datastore, Substorer } from "index/datastore";
 import { LocalStorageCache } from "index/persister";
 import { Indexable, INDEXABLE_EXTENSIONS } from "index/types/indexable";
 import { FileImporter, ImportThrottle } from "index/web-worker/importer";
-import { ImportResult } from "index/web-worker/message";
+import { ImportResult, PdfImportResult } from "index/web-worker/message";
 import { App, Component, EventRef, Events, MetadataCache, TAbstractFile, TFile, Vault } from "obsidian";
 import { Settings } from "settings";
 import { MarkdownListBlock, MarkdownListItem, MarkdownPage } from "./types/markdown";
@@ -11,7 +11,10 @@ import { GenericFile } from "./types/files";
 import { DateTime } from "luxon";
 import { EmbedQueue } from "./embed-queue";
 import { JsonMarkdownPage } from "./types/json/markdown";
+import { PDF } from "./types/pdf";
 import { Canvas, CanvasTextCard } from "./types/canvas";
+import { JsonCanvas } from "./types/json/canvas";
+import { JsonPDF } from "./types/json/pdf";
 
 /** Central API object; handles initialization, events, debouncing, and access to datacore functionality. */
 export class Datacore extends Component {
@@ -198,6 +201,12 @@ export class Datacore extends Component {
             // And finally trigger an update.
             this.trigger("update", this.revision);
             return parsed;
+        } else if(result.type === "pdf") {
+            this.trigger("update", this.revision);
+            let parsed = PDF.from(result.result);
+						this.persister.storeFile(parsed.$path, parsed.json())
+            this.datastore.store(parsed);
+            return parsed
         } else if (result.type === "canvas") {
             const parsed = Canvas.from(result.result, (link) => {
                 const rpath = this.metadataCache.getFirstLinkpathDest(link.path, result.result.$path!);
@@ -397,7 +406,11 @@ export class DatacoreInitializer extends Component {
                     const data = MarkdownPage.from(cached.data as JsonMarkdownPage, (link) => link);
                     this.core.storeMarkdown(data);
                     return { status: "cached" };
-                }
+                } else if(file.extension === "pdf") {
+									const data = PDF.from(cached.data as JsonPDF);
+									this.core.datastore.store(data);
+									return {status: "cached"}
+								}
             }
 
             // Does not match an existing import type, just reload normally.

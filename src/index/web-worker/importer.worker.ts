@@ -1,6 +1,7 @@
 import { canvasImport } from "index/import/canvas";
 import { markdownImport } from "index/import/markdown";
-import { CanvasImportResult, ImportCommand, MarkdownImportResult } from "index/web-worker/message";
+import { pdfImport } from "index/import/pdf";
+import { ImportCommand, CanvasImportResult, MarkdownImportResult, PdfImportResult } from "index/web-worker/message";
 
 /** Web worker entry point for importing. */
 onmessage = async (event) => {
@@ -14,14 +15,19 @@ onmessage = async (event) => {
                 type: "markdown",
                 result: markdown,
             } as MarkdownImportResult);
-        } else if (message.type === "canvas") {
-            const canvas = canvasImport(message.path, message.contents, message.index, message.stat);
-
+        } else if (message.type === "pdf") {
             postMessage({
-                type: "canvas",
-                result: canvas,
-            } as CanvasImportResult);
-        } else {
+                    type: "pdf",
+                    result: await pdfImport(message),
+                } as PdfImportResult)
+        } else if(message.type === "canvas") {
+					const canvas = canvasImport(message.path, message.contents, message.index, message.stat)
+					
+					postMessage({
+						type: "canvas",
+						result: canvas
+					} as CanvasImportResult)
+				} else {
             postMessage({ $error: "Unsupported import method." });
         }
     } catch (error) {
