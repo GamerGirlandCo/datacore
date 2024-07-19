@@ -122,7 +122,7 @@ export function FieldSelect({
             isMulti={multi ?? false}
             options={options}
             menuPortalTarget={document.body}
-            defaultValue={field.value}
+            defaultValue={options.find(a => a.value == field.value)}
             classNames={{
                 input: (props: any) => "prompt-input",
                 valueContainer: (props: any) => "suggestion-item value-container",
