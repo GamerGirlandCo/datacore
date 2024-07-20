@@ -12,6 +12,8 @@ import { useFilterDispatch, Filter } from "ui/filter";
 
 
 
+
+
 /** A simple column definition which allows for custom renderers and titles. */
 export interface VanillaColumn<T, V = Literal> {
     /** The unique ID of this table column; you cannot have multiple columns with the same ID in a given table. */
