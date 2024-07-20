@@ -8,15 +8,15 @@ import { Indexable } from "index/types/indexable";
 import { LineSpan } from "index/types/json/markdown";
 import { Literal } from "expression/literal";
 type FieldBearingWithPosition = Indexable & Fieldbearing & { $position: LineSpan };
-function fieldWithDefault<T extends FieldBearingWithPosition>(object: T, key: string, defaultVal: Literal): Field {
-    if (object.field(key) != undefined) return object.field(key)!;
+function fieldWithDefault<T extends FieldBearingWithPosition>(object: T, fieldKey: string, defaultVal: Literal): Field {
+    if (object.field(fieldKey) != undefined) return object.field(fieldKey)!;
     return {
-        key,
+        key: fieldKey,
         value: defaultVal,
         provenance: {
             type: "inline-field",
             file: object.$file!,
-            key,
+            key: fieldKey,
             line: object.$position.end,
         },
     };
@@ -24,14 +24,14 @@ function fieldWithDefault<T extends FieldBearingWithPosition>(object: T, key: st
 export function FieldCheckbox<T extends FieldBearingWithPosition>(
     props: {
         className?: string;
-        key: string;
+        fieldKey: string;
         object: T;
         defaultChecked?: boolean;
         dispatch: Dispatch<EditableAction<Field>>;
     } & React.HTMLProps<HTMLInputElement>
 ) {
-    const { key, object, defaultChecked = false, dispatch, ...rest } = props;
-    const field = fieldWithDefault(object, key, defaultChecked);
+    const { fieldKey, object, defaultChecked = false, dispatch, ...rest } = props;
+    const field = fieldWithDefault(object, fieldKey, defaultChecked);
     return (
         <Checkbox
             {...rest}
@@ -46,14 +46,14 @@ export function FieldCheckbox<T extends FieldBearingWithPosition>(
 }
 
 export function EditableTextField<T extends FieldBearingWithPosition>(props: {
-    key: string;
+    fieldKey: string;
     object: T;
     inline: boolean;
     defaultValue: string;
     dispatch: Dispatch<EditableAction<string>>;
 }) {
-    const { key, object, defaultValue = "", inline, dispatch } = props;
-    const field = fieldWithDefault(object, key, defaultValue);
+    const { fieldKey, object, defaultValue = "", inline, dispatch } = props;
+    const field = fieldWithDefault(object, fieldKey, defaultValue);
     return (
         <ControlledEditableTextField
             text={(field?.value ?? defaultValue) as string}
@@ -95,13 +95,13 @@ export function FieldSlider<T extends FieldBearingWithPosition>(
         max: number;
         step: number;
         defaultValue: number;
-        key: string;
+        fieldKey: string;
         object: T;
         dispatch: Dispatch<EditableAction<Field>>;
     } & Omit<React.HTMLProps<HTMLInputElement>, Omittable>
 ) {
-    const { key, object, dispatch, defaultValue = 0, min, max, step, ...rest } = props;
-    const field = fieldWithDefault(object, key, defaultValue);
+    const { fieldKey, object, dispatch, defaultValue = 0, min, max, step, ...rest } = props;
+    const field = fieldWithDefault(object, fieldKey, defaultValue);
     const value = (field?.value ?? defaultValue) as number;
     return (
         <Slider
@@ -124,13 +124,13 @@ export function FieldSwitch<T extends FieldBearingWithPosition>(
         className?: string;
         disabled?: boolean;
         defaultValue: boolean;
-        key: string;
+        fieldKey: string;
         object: T;
         dispatch: Dispatch<EditableAction<Field>>;
     } & Omit<React.HTMLProps<HTMLInputElement>, Omittable>
 ) {
-    const { key, object, dispatch, defaultValue = false, ...rest } = props;
-    const field = fieldWithDefault(object, key, defaultValue);
+    const { fieldKey, object, dispatch, defaultValue = false, ...rest } = props;
+    const field = fieldWithDefault(object, fieldKey, defaultValue);
     return (
         <Switch
             {...rest}
@@ -147,18 +147,18 @@ export function FieldSelect<T extends FieldBearingWithPosition>({
     multi = false,
     options,
     defaultValue,
-    key,
+    fieldKey,
     object,
     dispatch,
 }: {
     multi?: boolean;
     defaultValue: string | string[];
-    key: string;
+    fieldKey: string;
     object: T;
     options: { value: string; label: string }[];
     dispatch: Dispatch<EditableAction<Field>>;
 }) {
-    const field = fieldWithDefault(object, key, defaultValue);
+    const field = fieldWithDefault(object, fieldKey, defaultValue);
     const innerCallback = useSetField(field, (b) =>
         dispatch({ type: "content-changed", newValue: { ...field, value: b } })
     );
