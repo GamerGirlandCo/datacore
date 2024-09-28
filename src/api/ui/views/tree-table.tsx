@@ -123,10 +123,14 @@ export namespace TreeUtils {
                 );
                 seen += groupSize;
             } else {
-							let sz = countInTreeRow((initial[index] as TreeTableRowData<T>));
-							let treeStart = Math.max(seen, start);
-							let treeEnd = Math.min(sz, end);
-							(initial[index] as TreeTableRowData<T>).children = sliceInTreeRow((initial[index] as TreeTableRowData<T>).children, treeStart, treeEnd)
+                let sz = countInTreeRow(initial[index] as TreeTableRowData<T>);
+                let treeStart = Math.max(seen, start);
+                let treeEnd = Math.min(sz, end);
+                (initial[index] as TreeTableRowData<T>).children = sliceInTreeRow(
+                    (initial[index] as TreeTableRowData<T>).children,
+                    treeStart,
+                    treeEnd
+                );
                 seen += sz;
             }
             index++;
@@ -419,33 +423,29 @@ export function TreeTableRowCell<T>({
     isFirst: boolean;
 }) {
     const value = useMemo(() => column.value(row.value), [row, column.value]);
-		const [editableState, dispatch] = useEditableDispatch<typeof value>({
+    const [editableState, dispatch] = useEditableDispatch<typeof value>({
         content: value,
         isEditing: false,
         updater: (v) => column.onUpdate && column.onUpdate(v, row.value),
     });
     const renderable = useMemo(() => {
-
         if (column.render) {
-					let r = column.render(editableState.content, row.value);
-					if(r && typeof r == "object" && "props" in r)
-						return {...r, props: {...r.props, dispatch}}
-					return r;
-				}
-        else return value;
+            let r = column.render(editableState.content, row.value);
+            if (r && typeof r == "object" && "props" in r) return { ...r, props: { ...r.props, dispatch } };
+            return r;
+        } else return value;
     }, [row, column.render, value]);
 
     const rendered = useAsElement(renderable);
 
-    
-const Editor = useMemo(() => {
-			let e;
+    const Editor = useMemo(() => {
+        let e;
         if (column.editable && column.editor) e = column.editor(editableState.content, row.value);
         else e = null;
-				if(e) return {...e, props: {...e.props, dispatch}};
-				return e;
+        if (e) return { ...e, props: { ...e.props, dispatch } };
+        return e;
     }, [row, column.editor, column.editable, value]);
-   
+
     return (
         <td
             style={{ paddingLeft: isFirst ? `${(level - 1) * 1.2}em` : undefined }}
