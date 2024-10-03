@@ -168,6 +168,17 @@ export namespace TreeUtils {
     }
 }
 
+function useKeyFn<T>(id: TreeTableState<T>["id"], ...deps: any[]) {
+		const ret = useCallback((el: TreeTableRowData<T> | GroupElement<TreeTableRowData<T>>) => {
+			if(Groupings.isElementGroup(el)) {
+				return el.key
+			} else {
+				return id(el.value)
+			}
+		}, [...deps]);
+		return ret
+}
+
 export interface TreeTableColumn<T, V = Literal> extends VanillaColumn<T, V> {
     sortable?: boolean;
 
@@ -332,11 +343,13 @@ export function TreeTableRowGroup<T>({
     element: GroupElement<TreeTableRowData<T>> | TreeTableRowData<T>;
     groupings?: GroupingConfig<TreeTableRowData<T>>[];
 }) {
+		const {id} = useContext(TypedExpandedContext<T>())
+		const keyFn = useKeyFn(id)
     const groupIndex = groupings ? Math.min(groupings.length - 1, level) : 0;
     if (Groupings.isElementGroup(element)) {
         const groupingConfig = groupings ? groupings[groupIndex] : undefined;
         return (
-            <Fragment>
+            <Fragment key={keyFn(element)}>
                 <TreeTableGroupHeader level={level} value={element} width={columns.length} config={groupingConfig} />
                 {element.rows.map((row) => (
                     <TreeTableRowGroup<T> level={level + 1} columns={columns} element={row} groupings={groupings} />
@@ -344,7 +357,7 @@ export function TreeTableRowGroup<T>({
             </Fragment>
         );
     } else {
-        return <TreeTableRow row={element} columns={columns} level={level - groupIndex + 1} />;
+        return <TreeTableRow row={element} columns={columns} level={level - groupIndex + 1} key={keyFn(element)} />;
     }
 }
 
@@ -387,7 +400,7 @@ export function TreeTableRow<T>({
 }) {
     const { openMap, id } = useContext(TypedExpandedContext<T>());
     const open = useMemo(() => openMap.get(id(row.value)), [openMap, openMap.get(id(row.value)), row, row.value]);
-    const hasChildren = useMemo(() => row.children.length > 0, [row, row.children]);
+    const hasChildren = useMemo(() => row.children.length > 0, [row, row.children, row.value]);
     return (
         <Fragment>
             <tr className="datacore-table-row">
@@ -397,7 +410,7 @@ export function TreeTableRow<T>({
                 ))}
             </tr>
             {open
-                ? row.children.map((child) => <TreeTableRow row={child} columns={columns} level={level + 1} />)
+                ? row.children.map((child) => <TreeTableRow row={child} columns={columns} level={level + 1} key={id(child.value)} />)
                 : null}
         </Fragment>
     );
@@ -414,7 +427,10 @@ export function TreeTableRowCell<T>({
     level: number;
     isFirst: boolean;
 }) {
-    const value = useMemo(() => column.value(row.value), [row.value, column.value]);
+    const value = useMemo(() => column.value(row.value), [row.value, column.value, column.value(row.value)]);
+		const updater = useCallback((v: Literal) => {
+			column.onUpdate && column.onUpdate(v, row.value)
+		}, [value, row.value])
     const [editableState, dispatch] = useEditableDispatch<typeof value>({
         content: value,
         isEditing: false,
@@ -422,14 +438,12 @@ export function TreeTableRowCell<T>({
     });
 		useEffect(() => {
 			dispatch({type: "content-changed", newValue: value})
-		}, [value])
+		}, [value, updater])
+		let renderedColumn = column.render ? column.render(editableState.content, row.value) : value;
     const renderable = useMemo(() => {
-        if (column.render) {
-            let r = column.render(editableState.content, row.value);
-            if (r && typeof r == "object" && "props" in r) return { ...r, props: { ...r.props, dispatch } };
-            return r;
-        } else return value;
-    }, [column.render, value, editableState.content]);
+			if (renderedColumn && typeof renderedColumn == "object" && "props" in renderedColumn) return Object.assign(renderedColumn, { props: Object.assign(renderedColumn.props, { dispatch }) });
+      else return renderedColumn;
+    }, [column.render, value, editableState.content, renderedColumn, row.value, updater]);
 
     const rendered = useAsElement(renderable);
 
@@ -437,9 +451,9 @@ export function TreeTableRowCell<T>({
         let e;
         if (column.editable && column.editor) e = column.editor(editableState.content, row.value);
         else e = null;
-        if (e) return { ...e, props: { ...e.props, dispatch } };
+        if (e) return Object.assign(e, { props: Object.assign(e.props, { dispatch }) });
         return e;
-    }, [column.editor, column.editable, editableState.content]);
+    }, [column.editor, column.editable, editableState.content, row.value]);
 
     return (
         <td
@@ -519,10 +533,12 @@ export function ControlledTreeTableView<T>(
     
 
     const pagedRows = useMemo(() => {
-        if (paging.enabled)
-            return TreeUtils.slice(rows, paging.page * paging.pageSize, (paging.page + 1) * paging.pageSize);
-        return rows;
+			if (paging.enabled)
+				return TreeUtils.slice(rows, paging.page * paging.pageSize, (paging.page + 1) * paging.pageSize);
+			return rows;
     }, [paging.page, paging.pageSize, paging.enabled, props.rows, rows]);
+		
+		const keyFn = useKeyFn(props.id, pagedRows)	
     const Context = TypedExpandedContext<T>();
     return (
         <Context.Provider value={{ openMap: props.openMap!, dispatch: props.dispatch, id: props.id }}>
@@ -542,7 +558,7 @@ export function ControlledTreeTableView<T>(
                     </thead>
                     <tbody>
                         {pagedRows.map((row) => (
-                            <TreeTableRowGroup<T> element={row} columns={columns} level={0} groupings={groupings} />
+                            <TreeTableRowGroup<T> element={row} columns={columns} level={0} groupings={groupings} key={keyFn(row)} />
                         ))}
                     </tbody>
                 </table>
