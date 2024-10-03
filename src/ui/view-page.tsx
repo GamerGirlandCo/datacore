@@ -120,7 +120,7 @@ function DatacoreViewSettings() {
                     <small>The path returned by functions like `useCurrentPath` in this view</small>
                 </Stack>
 								<AsyncSelect 
-									loadOptions={debouncedFetch as unknown as AsyncProps<string, false, GroupBase<string>>["loadOptions"]}
+									loadOptions={debouncedFetch as unknown as AsyncProps<{value: string, label: string}, false, GroupBase<{value: string, label: string}>>["loadOptions"]}
 									menuPortalTarget={document.body}
         	        classNames={{
                     input: (props: any) => "prompt-input",
@@ -132,7 +132,7 @@ function DatacoreViewSettings() {
                 	classNamePrefix="datacore-selectable"
 									cacheOptions
 									unstyled
-									defaultOptions={[view.getState().currentFile]}
+									defaultOptions={[{value: view.getState().currentFile, label: view.getState().currentFile }]}
 								/> 
             </Group>
         </Stack>
