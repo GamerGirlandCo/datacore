@@ -94,7 +94,7 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
                 await rewriteTask(app.vault, core, item, item.$status, withFields);
             }
         },
-        [item]
+        [item.$status, item]
     );
     const checked = useMemo(() => item.$status !== " ", [item.$status]);
     const eState: EditableState<string> = useMemo(() => {
@@ -104,8 +104,8 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
             inline: false,
             isEditing: false,
         } as EditableState<string>;
-    }, [item]);
-    const theElement = useMemo(() => <TextEditable sourcePath={item.$file} {...eState} />, [eState, item, props.rows]);
+    }, [item.$cleanText, item.$text]);
+    const theElement = useMemo(() => <TextEditable sourcePath={item.$file} {...eState} />, [eState.content, item, props.rows]);
 
     const [collapsed, setCollapsed] = useState<boolean>(true);
     const hasChildren = item.$elements.length > 0;
