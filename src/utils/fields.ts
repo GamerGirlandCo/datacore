@@ -53,7 +53,7 @@ export async function setTaskText(app: App, core: Datacore, text: string, item: 
 export function useFinalizer<T>(newValue: T, dispatch: Dispatch<EditableAction<T>>) {
     return async function () {
         dispatch({
-            type: "commit",
+            type: "content-changed",
             newValue: newValue,
         });
         dispatch({
