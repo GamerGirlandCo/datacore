@@ -271,11 +271,12 @@ export function TextEditable(props: EditableState<string> & { markdown?: boolean
 
     const text = useRef("-");
     useEffect(() => {
-        text.current = props.content;
-        dispatch({ type: "content-changed", newValue: props.content });
-    }, [props.content]);
+        text.current = state.content;
+				console.log(state.content)
+        dispatch({ type: "content-changed", newValue: state.content });
+    }, [props.content, state.content]);
 
-    const finalize = useFinalizer(text.current, dispatch) 
+    const finalize = useFinalizer(state.content, dispatch) 
     const onInput = useStableCallback(
         async (e: KeyboardEvent) => {
             if (props.inline) {
@@ -329,11 +330,13 @@ export function UncontrolledTextEditable({
     dispatch?: Dispatch<EditableAction<string>>;
 		onInput?: (e: KeyboardEvent) => unknown;
 }) {
-		const [txt, setText] = useState(text)
+		const [txt, setText] = useState(text);
+		useEffect(() => {
+      dispatch && dispatch({ newValue: txt, type: "content-changed" });
+		}, [txt])
     const onChangeCb = useStableCallback(
         async (evt: ChangeEvent) => {
 					setText((evt.currentTarget as HTMLTextAreaElement).value)
-            dispatch && dispatch({ newValue: txt, type: "content-changed" });
         },
         [text, dispatch]
     );
