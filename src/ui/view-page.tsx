@@ -74,8 +74,8 @@ function DatacoreViewSettings() {
         debouncedSave();
     }, [internalState]);
     const view = useContext(CUSTOM_VIEW_CONTEXT);
-		const debouncedFetch = debounce(useStableCallback((input: string, callback: (options: string[]) => void) => {
-			callback(core.vault.getMarkdownFiles().filter(x => x.path.toLocaleLowerCase().includes(input.toLocaleLowerCase())).map((f) => f.path))
+		const debouncedFetch = debounce(useStableCallback((input: string, callback: (options: {label: string, value: string}[]) => void) => {
+			callback(core.vault.getMarkdownFiles().filter(x => x.path.toLocaleLowerCase().includes(input.toLocaleLowerCase())).map((f) => ({label: f.path, value: f.path})))
 		}, [revision]), 300)	
     return (
         <Stack align="stretch">
