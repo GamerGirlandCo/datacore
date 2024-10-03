@@ -481,11 +481,13 @@ export function ControlledTreeTableView<T>(
                 0
             );
     }, [props.rows]);
+    const tableRef = useRef<HTMLDivElement>(null);
     const paging = useDatacorePaging({
         initialPage: 0,
         paging: props.paging,
         scrollOnPageChange: props.scrollOnPaging,
         elements: totalElements,
+				container: tableRef
     });
     const rawSorts = useInterning(props.sortOn, (a, b) => Literals.compare(a, b) == 0);
     const sorts = useMemo(() => {
@@ -519,21 +521,7 @@ export function ControlledTreeTableView<T>(
         return TreeUtils.sort<T, Literal>(rawRows, comparators) as Grouping<TreeTableRowData<T>>;
     }, [rawRows, sorts]);
 
-    const tableRef = useRef<HTMLDivElement>(null);
-    const setPage = useCallback(
-        (page: number) => {
-            if (page != paging.page && paging.scroll) {
-                tableRef.current?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                    inline: "nearest",
-                });
-            }
-
-            paging.setPage(page);
-        },
-        [paging.page, paging.setPage, paging.scroll, tableRef]
-    );
+    
 
     const pagedRows = useMemo(() => {
         if (paging.enabled)
@@ -564,7 +552,7 @@ export function ControlledTreeTableView<T>(
                     </tbody>
                 </table>
                 {paging.enabled && (
-                    <ControlledPager page={paging.page} totalPages={paging.totalPages} setPage={setPage} />
+                    <ControlledPager page={paging.page} totalPages={paging.totalPages} setPage={paging.setPage} />
                 )}
             </div>
         </Context.Provider>
