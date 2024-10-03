@@ -6,7 +6,7 @@ import { MarkdownPage, MarkdownSection, MarkdownBlock, MarkdownListItem, Markdow
 import { DateTime } from "luxon";
 import { Vault } from "obsidian";
 
-export const storeTask: Substorer<MarkdownTaskItem> = (obj, store) => store(obj.$elements, store);
+ 
 
 export function parseDotField(raw: string, obj: any) {
     if (obj === null) return obj;
@@ -48,8 +48,7 @@ export function setTaskCompletion(
     useEmojiShorthand: boolean,
     completionKey: string,
     completionDateFormat: string,
-    complete: boolean,
-		core: Datacore
+    complete: boolean
 ): string {
     const blockIdRegex = /\^[a-z0-9\-]+/i;
 
@@ -122,7 +121,8 @@ export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTa
 
     let newText = filetext.join(hasRN ? "\r\n" : "\n");
     await vault.adapter.write(task.$file, newText);
-		core.datastore.store(task, storeTask);
+		const tfile = vault.getFileByPath(task.$file)
+		if(tfile) core.reload(tfile)
 }
 export async function completeTask(completed: boolean, task: MarkdownTaskItem, vault: Vault, core: Datacore) {
     const tasksToComplete = [task];
@@ -140,8 +140,7 @@ export async function completeTask(completed: boolean, task: MarkdownTaskItem, v
             core.settings.taskCompletionUseEmojiShorthand,
             core.settings.taskCompletionText,
             core.settings.defaultDateFormat,
-            completed,
-						core
+            completed
         );
         await rewriteTask(vault, core, t, completed ? "x" : " ", newText);
     }
