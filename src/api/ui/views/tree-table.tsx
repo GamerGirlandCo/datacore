@@ -123,15 +123,7 @@ export namespace TreeUtils {
                 );
                 seen += groupSize;
             } else {
-                let sz = countInTreeRow(initial[index] as TreeTableRowData<T>);
-                let treeStart = Math.max(seen, start);
-                let treeEnd = Math.min(sz, end);
-                (initial[index] as TreeTableRowData<T>).children = sliceInTreeRow(
-                    (initial[index] as TreeTableRowData<T>).children,
-                    treeStart,
-                    treeEnd
-                );
-                seen += sz;
+                seen += countInTreeRow(element);
             }
             index++;
         }
