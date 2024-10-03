@@ -7,6 +7,7 @@ import { Dispatch, useCallback, useContext } from "preact/hooks";
 import { APP_CONTEXT } from "ui/markdown";
 import { rewriteTask } from "./task";
 import { EditableAction } from "ui/fields/editable";
+import { Datacore } from "index/datacore";
 
 export async function rewriteFieldInFile(field: Field, newValue: Literal, app: App) {
     switch (field.provenance?.type) {
@@ -42,12 +43,12 @@ export function useSetField<T extends Literal>(field: Field, onChange?: (newValu
         [field, onChange]
     );
 }
-export async function setTaskText(app: App, text: string, item: MarkdownTaskItem) {
+export async function setTaskText(app: App, core: Datacore, text: string, item: MarkdownTaskItem) {
     let withFields = `${text}${Object.keys(item.$infields).length ? " " : ""}`;
     for (let field in item.$infields) {
         withFields = setInlineField(withFields, field, item.$infields[field].raw);
     }
-    await rewriteTask(app.vault, item, item.$status, withFields);
+    await rewriteTask(app.vault, core, item, item.$status, withFields);
 }
 export function useFinalizer<T>(newValue: T, dispatch: Dispatch<EditableAction<T>>) {
     return async function () {

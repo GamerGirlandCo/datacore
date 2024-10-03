@@ -152,10 +152,10 @@ export class DatacoreLocalApi {
     }
 
 		public setTaskText(newText: string, task: MarkdownTaskItem): void  {
-			setTaskText(this.app, newText, task);
+			setTaskText(this.app, this.core, newText, task);
 		}
 		public setTaskCompletion(completed: boolean, task: MarkdownTaskItem): void {
-			completeTask(completed, task, this.core)
+			completeTask(completed, task, this.app.vault, this.core)
 		}
 
     /////////////
@@ -174,7 +174,8 @@ export class DatacoreLocalApi {
     public useInterning = useInterning;
 
 		public useSetField = useSetField;
-		/** Memoize the input automatically and process it using a DataArray; returns a vanilla array back. */
+		
+    /** Memoize the input automatically and process it using a DataArray; returns a vanilla array back. */
     public useArray<T, U>(input: T[] | DataArray<T>, process: (data: DataArray<T>) => DataArray<U>, deps?: any[]): U[] {
         return hooks.useMemo(() => process(DataArray.wrap(input)).array(), [input, ...(deps ?? [])]);
     }
