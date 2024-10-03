@@ -278,7 +278,7 @@ class GeneralSettingsTab extends PluginSettingTab {
                 });
             });
 
-        this.containerEl.createEl("h2", "Tasks");
+        this.containerEl.createEl("h2", {text: "Tasks"});
 
         new Setting(this.containerEl)
             .setName("Task Completion Text")
