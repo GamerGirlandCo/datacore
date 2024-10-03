@@ -107,7 +107,7 @@ export namespace TreeUtils {
         start: number,
         end: number
     ): Grouping<TreeTableRowData<T>> {
-        let initial = Groupings.slice(elements, start, end);
+        let initial = [...Groupings.slice(elements, start, end)] as Grouping<TreeTableRowData<T>>;
         let index = 0,
             seen = 0;
 
@@ -386,8 +386,8 @@ export function TreeTableRow<T>({
     columns: TreeTableColumn<T>[];
 }) {
     const { openMap, id } = useContext(TypedExpandedContext<T>());
-    const open = useMemo(() => openMap.get(id(row.value)), [openMap, openMap.get(id(row.value)), row]);
-    const hasChildren = useMemo(() => row.children.length > 0, [row]);
+    const open = useMemo(() => openMap.get(id(row.value)), [openMap, openMap.get(id(row.value)), row, row.value]);
+    const hasChildren = useMemo(() => row.children.length > 0, [row, row.children]);
     return (
         <Fragment>
             <tr className="datacore-table-row">
