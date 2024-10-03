@@ -47,7 +47,7 @@ async function build(prod) {
 		},
 		outfile: 'build/plugin/main.js',
 	}).catch(() => process.exit(1));
-
+	fs.writeFileSync("build/plugin/main.js", `${fs.readFileSync("build/plugin/main.js").toString()}\n/* nosourcemap */`)
 	// Copy the manifest and styles.
 	fs.copyFileSync("manifest-beta.json", "build/plugin/manifest.json");
 	fs.renameSync("build/plugin/main.css", "build/plugin/styles.css");
