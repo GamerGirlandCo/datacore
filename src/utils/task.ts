@@ -1,9 +1,12 @@
 import { Datacore } from "index/datacore";
+import { Substorer } from "index/datastore";
 import { setEmojiShorthandCompletionField, setInlineField } from "index/import/inline-field";
 import { Indexable } from "index/types/indexable";
 import { MarkdownPage, MarkdownSection, MarkdownBlock, MarkdownListItem, MarkdownTaskItem } from "index/types/markdown";
 import { DateTime } from "luxon";
 import { Vault } from "obsidian";
+
+export const storeTask: Substorer<MarkdownTaskItem> = (obj, store) => store(obj.$elements, store);
 
 export function parseDotField(raw: string, obj: any) {
     if (obj === null) return obj;
@@ -45,7 +48,8 @@ export function setTaskCompletion(
     useEmojiShorthand: boolean,
     completionKey: string,
     completionDateFormat: string,
-    complete: boolean
+    complete: boolean,
+		core: Datacore
 ): string {
     const blockIdRegex = /\^[a-z0-9\-]+/i;
 
@@ -86,7 +90,7 @@ export function setTaskCompletion(
 export const LIST_ITEM_REGEX = /^[\s>]*(\d+\.|\d+\)|\*|-|\+)\s*(\[.{0,1}\])?\s*(.*)$/mu;
 
 /** Rewrite a task with the given completion status and new text. */
-export async function rewriteTask(vault: Vault, task: MarkdownTaskItem, desiredStatus: string, desiredText?: string) {
+export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTaskItem, desiredStatus: string, desiredText?: string) {
     if (desiredStatus == task.$status && (desiredText == undefined || desiredText == task.$text)) return;
     desiredStatus = desiredStatus == "" ? " " : desiredStatus;
 
@@ -118,8 +122,9 @@ export async function rewriteTask(vault: Vault, task: MarkdownTaskItem, desiredS
 
     let newText = filetext.join(hasRN ? "\r\n" : "\n");
     await vault.adapter.write(task.$file, newText);
+		core.datastore.store(task, storeTask);
 }
-export async function completeTask(completed: boolean, task: MarkdownTaskItem, core: Datacore) {
+export async function completeTask(completed: boolean, task: MarkdownTaskItem, vault: Vault, core: Datacore) {
     const tasksToComplete = [task];
     if (core.settings.recursiveTaskCompletion) {
         const forEach = (x: MarkdownTaskItem | MarkdownListItem) => {
@@ -135,8 +140,9 @@ export async function completeTask(completed: boolean, task: MarkdownTaskItem, c
             core.settings.taskCompletionUseEmojiShorthand,
             core.settings.taskCompletionText,
             core.settings.defaultDateFormat,
-            completed
+            completed,
+						core
         );
-        await rewriteTask(core.vault, t, completed ? "x" : " ", newText);
+        await rewriteTask(vault, core, t, completed ? "x" : " ", newText);
     }
 }

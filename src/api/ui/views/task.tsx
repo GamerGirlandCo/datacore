@@ -5,7 +5,7 @@ import { Fragment, Ref } from "preact";
 import { APP_CONTEXT, DATACORE_CONTEXT } from "ui/markdown";
 import { JSXInternal } from "preact/src/jsx";
 import { Dispatch, useContext, useMemo, useRef, useState } from "preact/hooks";
-import { completeTask, rewriteTask, setTaskCompletion } from "utils/task";
+import { completeTask, rewriteTask } from "utils/task";
 import { Literal, Literals } from "expression/literal";
 import {
     EditableAction,
@@ -78,7 +78,7 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
                 newStatus = completed ? "x" : " ";
             }
             setStatus(newStatus);
-						await completeTask(completed, item, core)
+						await completeTask(completed, item, app.vault, core)
             const nv = completed ? DateTime.now().toFormat(settings.defaultDateFormat) : null;
             completedRef.current && completedRef.current({ type: "commit", newValue: nv });
         },
@@ -91,7 +91,7 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
                 for (let field in item.$infields) {
                     withFields = setInlineField(withFields, field, item.$infields[field].raw);
                 }
-                await rewriteTask(app.vault, item, item.$status, withFields);
+                await rewriteTask(app.vault, core, item, item.$status, withFields);
             }
         },
         [item]
@@ -208,7 +208,7 @@ export function ListItemFields({
                                 );
                             }
                             withFields = setInlineField(item.$text, ifield.key, dateString(val));
-                            rewriteTask(app.vault, item, item.$status, withFields);
+                            rewriteTask(app.vault, core, item, item.$status, withFields);
                         },
                         [item.$infields]
                     ),

@@ -29,7 +29,7 @@ import { Coerce } from "./coerce";
 import { ScriptCache } from "./script-cache";
 import { setTaskText, useSetField } from "utils/fields";
 import { ControlledTextEditable, EditableFieldCheckbox, EditableTextField } from "ui/fields/editable-fields";
-import { compeleteTask, rewriteTask } from "utils/task";
+import { completeTask, rewriteTask } from "utils/task";
 
 /** Local API provided to specific codeblocks when they are executing.
  * @group Core
@@ -152,10 +152,10 @@ export class DatacoreLocalApi {
     }
 
 		public setTaskText(newText: string, task: MarkdownTaskItem): void  {
-			setTaskText(this.app, newText, task);
+			setTaskText(this.app, this.core, newText, task);
 		}
 		public setTaskCompletion(completed: boolean, task: MarkdownTaskItem): void {
-			compeleteTask(completed, task, this.core)
+			completeTask(completed, task, this.app.vault, this.core)
 		}
 
     /////////////
