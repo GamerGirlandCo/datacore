@@ -67,17 +67,16 @@ export default class DatacorePlugin extends Plugin {
         this.addCommand({
             id: "datacore-add-view-page",
             name: "Create View Page",
-            callback: () => {	
-							const newLeaf = this.app.workspace.getLeaf("tab");
-							newLeaf.setViewState({type: VIEW_TYPE_DATACORE, active: true});
-							this.app.workspace.setActiveLeaf(newLeaf, {focus: true});
-							(newLeaf.view as DatacoreQueryView).toggleSettings(true);
-						},
+            callback: () => {
+                const newLeaf = this.app.workspace.getLeaf("tab");
+                newLeaf.setViewState({ type: VIEW_TYPE_DATACORE, active: true });
+                this.app.workspace.setActiveLeaf(newLeaf, { focus: true });
+                (newLeaf.view as DatacoreQueryView).toggleSettings(true);
+            },
         });
 
         // Make the API globally accessible from any context.
         window.datacore = this.api;
-
 
         // bon appetit
         console.log(`Datacore: version ${this.manifest.version} (requires obsidian ${this.manifest.minAppVersion})`);
@@ -295,29 +294,27 @@ class GeneralSettingsTab extends PluginSettingTab {
                 });
             });
 
-        
+        this.containerEl.createEl("h2", { text: "Tasks" });
 
-			this.containerEl.createEl("h2", "Tasks")
+        new Setting(this.containerEl)
+            .setName("Task Completion Text")
+            .setDesc("Name of inline field in which to store task completion date/time")
+            .addText((text) => {
+                text.setValue(this.plugin.settings.taskCompletionText).onChange(async (value) => {
+                    await this.plugin.updateSettings({ taskCompletionText: value });
+                });
+            });
 
-			new Setting(this.containerEl)
-						.setName("Task Completion Text")
-						.setDesc("Name of inline field in which to store task completion date/time")
-						.addText(text => {
-							text.setValue(this.plugin.settings.taskCompletionText).onChange(async value => {
-								await this.plugin.updateSettings({taskCompletionText: value})
-							})
-						})
-
-			new Setting(this.containerEl)
-						.setName("Use Emoji Shorthand for Task Completion")
-						.setDesc("If enabled, automatic completion will use an emoji shorthand ✅ YYYY-MM-DD" + 
-							"instead of [completion:: date].")
-						.addToggle((tb) => {
+        new Setting(this.containerEl)
+            .setName("Use Emoji Shorthand for Task Completion")
+            .setDesc(
+                "If enabled, automatic completion will use an emoji shorthand ✅ YYYY-MM-DD" +
+                    "instead of [completion:: date]."
+            )
+            .addToggle((tb) => {
                 tb.setValue(this.plugin.settings.taskCompletionUseEmojiShorthand).onChange(async (val) => {
                     await this.plugin.updateSettings({ taskCompletionUseEmojiShorthand: val });
                 });
             });
-
-	
     }
 }
