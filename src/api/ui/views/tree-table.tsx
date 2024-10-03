@@ -423,10 +423,13 @@ export function TreeTableRowCell<T>({
     isFirst: boolean;
 }) {
     const value = useMemo(() => column.value(row.value), [row.value, column.value]);
+		const updater = useCallback((v: Literal) => {
+			column.onUpdate && column.onUpdate(v, row.value)
+		}, [value, row.value])
     const [editableState, dispatch] = useEditableDispatch<typeof value>({
         content: value,
         isEditing: false,
-        updater: (v) => column.onUpdate && column.onUpdate(v, row.value),
+        updater,
     });
 		useEffect(() => {
 			dispatch({type: "content-changed", newValue: value})
