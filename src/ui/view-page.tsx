@@ -150,6 +150,7 @@ function DatacoreViewSettings() {
                         classNamePrefix="datacore-selectable"
                         cacheOptions
                         unstyled
+												defaultValue={{value: view.getState().currentFile, label: view.getState().currentFile}}
                         defaultOptions={[{ value: view.getState().currentFile, label: view.getState().currentFile }]}
                     />
                 </div>
