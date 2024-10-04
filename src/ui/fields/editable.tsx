@@ -332,7 +332,6 @@ export function TextEditable(props: EditableState<string> & { markdown?: boolean
     const text = useRef("-");
     useEffect(() => {
         text.current = state.content;
-				console.log(state.content)
         dispatch({ type: "content-changed", newValue: state.content });
     }, [props.content, state.content]);
 
