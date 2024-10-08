@@ -142,15 +142,16 @@ export interface JsonMarkdownListItem {
      * this is a root element of the list starting at line 7.
      */
     $parentLine: number;
-    /** the contents of this list item, with the list marker and indentation stripped. */
-    $text?: string;
-    /** the symbol of this list item */
+
+    /** The symbol at the start of the list item (such as '+' or '-' or '1.'). */
     $symbol?: string;
+    /** The contents of the list item. May be undefined if the list item could not be parsed. */
+    $text?: string;
 }
 
 export interface JsonMarkdownTaskItem extends JsonMarkdownListItem {
     $type: "task";
 
-    /** The text inside of the task item. */
+    /** The text inside of the task marker (usually '*' for checked tasks). */
     $status: string;
 }
