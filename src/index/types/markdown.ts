@@ -558,12 +558,11 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
      * this is a root element of the list starting at line 7.
      */
     $parentLine: number;
-
-    /** the contents of the list item */
-    $text: string;
-
-    $symbol: string;
-
+    /** The marker used to start the list item (such as - or + or *). On a malformed task, may be undefined. */
+    $symbol?: string;
+    /** The text contents of the list item. */
+    $text?: string;
+ 
     /** Create a list item from a serialized object. */
     static from(
         object: JsonMarkdownListItem,
@@ -585,7 +584,7 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
             $blockId: object.$blockId,
             $parentLine: object.$parentLine,
             $text: object.$text,
-            $symbol: object.$symbol!,
+            $symbol: object.$symbol,
         });
     }
 
@@ -603,6 +602,19 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
         return this.$position.end - this.$position.start + 1;
     }
 
+    /** Cleaned text that is garaunteed to be non-null and has indenation and inline fields removed. */
+    get $cleantext() {
+        if (!this.$text) return "";
+
+        return (
+            this.$text
+                // Eliminate [key:: value] annotations.
+                .replace(/(.*?)([\[\(][^:(\[]+::\s*.*?[\]\)]\s*)$/gm, "$1")
+                // Trim whitespace.
+                .trim()
+        );
+    }
+
     /** All of the indexed fields in this object. */
     get fields() {
         return MarkdownListItem.FIELD_DEF(this);
@@ -610,10 +622,9 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
 
     /** return text without annotations + indentation */
     get $cleanText() {
-        return this.$text
-            .replace(/(.*?)([\[\(][^:(\[]+::\s*.*?[\]\)]\s*)$/gm, "$1")
+        return this.$text?.replace(/(.*?)([\[\(][^:(\[]+::\s*.*?[\]\)]\s*)$/gm, "$1")
             .replace(/^[\t\f\v\s]*[\-\*+]\s(\[.\])?/gm, "")
-            .trimEnd(); //.replace(/^$/gm, "")
+            .trimEnd() || ""; //.replace(/^$/gm, "")
     }
     /** Fetch a specific field by key. */
     public field(key: string) {
@@ -634,8 +645,8 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
             $links: this.$links,
             $blockId: this.$blockId,
             $parentLine: this.$parentLine,
-            $text: this.$text,
             $symbol: this.$symbol,
+            $text: this.$text,
         };
     }
 
@@ -674,8 +685,8 @@ export class MarkdownTaskItem extends MarkdownListItem implements Indexable, Lin
             $blockId: object.$blockId,
             $parentLine: object.$parentLine,
             $status: object.$status,
+            $symbol: object.$symbol,
             $text: object.$text,
-            $symbol: object.$symbol!,
         });
     }
 
