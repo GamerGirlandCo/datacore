@@ -68,22 +68,19 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
     };
     const [status, setStatus] = useState<string>(item.$status);
     const completedRef = useRef<Dispatch<EditableAction<Literal>>>(null);
-    const onChecked = useStableCallback(
-        async (evt: JSXInternal.TargetedMouseEvent<HTMLInputElement>) => {
-            const completed = evt.currentTarget.checked;
-            let newStatus: string;
-            if (evt.shiftKey) {
-                newStatus = nextState();
-            } else {
-                newStatus = completed ? "x" : " ";
-            }
-            setStatus(newStatus);
-						await completeTask(completed, item, app.vault, core)
-            const nv = completed ? DateTime.now().toFormat(settings.defaultDateFormat) : null;
-            completedRef.current && completedRef.current({ type: "commit", newValue: nv });
-        },
-        []
-    );
+    const onChecked = useStableCallback(async (evt: JSXInternal.TargetedMouseEvent<HTMLInputElement>) => {
+        const completed = evt.currentTarget.checked;
+        let newStatus: string;
+        if (evt.shiftKey) {
+            newStatus = nextState();
+        } else {
+            newStatus = completed ? "x" : " ";
+        }
+        setStatus(newStatus);
+        await completeTask(completed, item, app.vault, core);
+        const nv = completed ? DateTime.now().toFormat(settings.defaultDateFormat) : null;
+        completedRef.current && completedRef.current({ type: "commit", newValue: nv });
+    }, []);
     const onChanger = useStableCallback(
         async (val: Literal) => {
             if (typeof val === "string") {
@@ -105,7 +102,10 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
             isEditing: false,
         } as EditableState<string>;
     }, [item.$cleanText, item.$text]);
-    const theElement = useMemo(() => <TextEditable sourcePath={item.$file} {...eState} />, [eState.content, item, props.rows]);
+    const theElement = useMemo(
+        () => <TextEditable sourcePath={item.$file} {...eState} />,
+        [eState.content, item, props.rows]
+    );
 
     const [collapsed, setCollapsed] = useState<boolean>(true);
     const hasChildren = item.$elements.length > 0;
@@ -122,7 +122,11 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
                 <div className="datacore-list-item-content">
                     {theElement}
                     <div className="datacore-list-item-fields">
-                        <ListItemFields displayedFields={props.displayedFields} item={item} completedRef={completedRef} />
+                        <ListItemFields
+                            displayedFields={props.displayedFields}
+                            item={item}
+                            completedRef={completedRef}
+                        />
                     </div>
                 </div>
             </div>
@@ -165,11 +169,11 @@ function CollapseIndicator({
 export function ListItemFields({
     displayedFields = [],
     item,
-		completedRef
+    completedRef,
 }: {
     displayedFields?: TaskProps["displayedFields"];
     item: MarkdownTaskItem;
-		completedRef: Ref<Dispatch<EditableAction<Literal>>>
+    completedRef: Ref<Dispatch<EditableAction<Literal>>>;
 }) {
     const app = useContext(APP_CONTEXT);
     const core = useContext(DATACORE_CONTEXT);
@@ -199,16 +203,18 @@ export function ListItemFields({
                                     : undefined;
 
                             let withFields = item.$text;
-                            if (item.$infields[ifield.key]) item.$infields[ifield.key].value = dateString(val)!;
-                            for (let field in item.$infields) {
-                                withFields = setInlineField(
-                                    withFields,
-                                    field,
-                                    dateString(item.$infields[field]?.value)
-                                );
+                            if (withFields && item.$text) {
+                                if (item.$infields[ifield.key]) item.$infields[ifield.key].value = dateString(val)!;
+                                for (let field in item.$infields) {
+                                    withFields = setInlineField(
+                                        withFields,
+                                        field,
+                                        dateString(item.$infields[field]?.value)
+                                    );
+                                }
+                                withFields = setInlineField(item.$text, ifield.key, dateString(val));
+                                rewriteTask(app.vault, core, item, item.$status, withFields);
                             }
-                            withFields = setInlineField(item.$text, ifield.key, dateString(val));
-                            rewriteTask(app.vault, core, item, item.$status, withFields);
                         },
                         [item.$infields]
                     ),
