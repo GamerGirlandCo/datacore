@@ -6,6 +6,9 @@ node_modules/
 # Build artifacts.
 build/
 
+# documentation artifacts.
+.docusaurus/
+
 # Various editor preferences.
 .vscode
 .idea/
