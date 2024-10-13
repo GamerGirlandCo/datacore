@@ -1,3 +1,7 @@
+/**
+ * @module views
+ */
+
 import { MarkdownListItem, MarkdownTaskItem } from "index/types/markdown";
 import { DefaultListElement, ListState } from "api/ui/views/list";
 import { useStableCallback } from "ui/hooks";
@@ -20,6 +24,10 @@ import { Field } from "expression/field";
 import { DateTime } from "luxon";
 import "styles/lists.css";
 
+/**
+ * Props passed to the task list component.
+ * @group Props
+ */
 export interface TaskProps extends ListState<MarkdownTaskItem | MarkdownListItem> {
     /** task states to cycle through, if specified */
     additionalStates?: string[];
@@ -27,6 +35,11 @@ export interface TaskProps extends ListState<MarkdownTaskItem | MarkdownListItem
     displayedFields?: (BaseFieldProps<Literal> & { key: string })[];
 }
 
+/** 
+ * Represents a list of tasks.
+ * 
+ * @group Components
+ */
 export function TaskList({
     rows: items,
     additionalStates: states,
@@ -48,7 +61,11 @@ export function TaskList({
     }, [items, states]);
     return <Fragment>{!!items && content}</Fragment>;
 }
-
+/** 
+ * Represents a single item in a task listing.
+ * 
+ * @group Components
+ */
 export function Task({ item, state: props }: { item: MarkdownTaskItem; state: TaskProps }) {
     const app = useContext(APP_CONTEXT);
     const core = useContext(DATACORE_CONTEXT);
@@ -134,6 +151,7 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
         </li>
     );
 }
+
 function CollapseIndicator({
     collapsed,
     onClick,
@@ -166,6 +184,11 @@ function CollapseIndicator({
     );
 }
 
+/** 
+ * Displays an editable set of fields below a task or list item.
+ * @hidden
+ * @group Components
+ */
 export function ListItemFields({
     displayedFields = [],
     item,
