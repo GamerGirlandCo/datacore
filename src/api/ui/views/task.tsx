@@ -37,7 +37,7 @@ export interface TaskProps extends ListState<MarkdownTaskItem | MarkdownListItem
 
 /** 
  * Represents a list of tasks.
- * 
+ * @param props
  * @group Components
  */
 export function TaskList({
@@ -63,7 +63,9 @@ export function TaskList({
 }
 /** 
  * Represents a single item in a task listing.
- * 
+ * @param props - the component's props
+ * @param props.item - the current task being rendered
+ * @param props.state - the {@link TaskProps} of the {@link TaskList} in which this Task appears
  * @group Components
  */
 export function Task({ item, state: props }: { item: MarkdownTaskItem; state: TaskProps }) {

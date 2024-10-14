@@ -7,6 +7,8 @@
 - [Callout](functions/Callout.md)
 - [Card](functions/Card.md)
 - [ListView](functions/ListView.md)
+- [Task](functions/Task.md)
+- [TaskList](functions/TaskList.md)
 - [VanillaTable](functions/VanillaTable.md)
 
 ### Props
@@ -14,6 +16,7 @@
 - [CalloutProps](interfaces/CalloutProps.md)
 - [CardProps](interfaces/CardProps.md)
 - [GroupingConfig](interfaces/GroupingConfig.md)
+- [TaskProps](interfaces/TaskProps.md)
 - [VanillaColumn](interfaces/VanillaColumn.md)
 - [VanillaTableProps](interfaces/VanillaTableProps.md)
 
