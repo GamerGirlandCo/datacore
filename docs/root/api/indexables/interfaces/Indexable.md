@@ -12,7 +12,7 @@ The file that this indexable was derived from, if file-backed.
 
 #### Defined in
 
-[src/index/types/indexable.ts:22](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/index/types/indexable.ts#L22)
+[src/index/types/indexable.ts:22](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/indexable.ts#L22)
 
 ***
 
@@ -24,7 +24,7 @@ The unique index ID for this object.
 
 #### Defined in
 
-[src/index/types/indexable.ts:14](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/index/types/indexable.ts#L14)
+[src/index/types/indexable.ts:14](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/indexable.ts#L14)
 
 ***
 
@@ -36,7 +36,7 @@ The indexable object that is the parent of this object. Only set after the objec
 
 #### Defined in
 
-[src/index/types/indexable.ts:18](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/index/types/indexable.ts#L18)
+[src/index/types/indexable.ts:18](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/indexable.ts#L18)
 
 ***
 
@@ -48,7 +48,7 @@ If present, the revision in the index of this object.
 
 #### Defined in
 
-[src/index/types/indexable.ts:20](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/index/types/indexable.ts#L20)
+[src/index/types/indexable.ts:20](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/indexable.ts#L20)
 
 ***
 
@@ -60,7 +60,7 @@ Textual description of the object, such as `Page` or `Section`. Used in visualiz
 
 #### Defined in
 
-[src/index/types/indexable.ts:12](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/index/types/indexable.ts#L12)
+[src/index/types/indexable.ts:12](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/indexable.ts#L12)
 
 ***
 
@@ -72,4 +72,4 @@ The object types that this indexable is.
 
 #### Defined in
 
-[src/index/types/indexable.ts:10](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/index/types/indexable.ts#L10)
+[src/index/types/indexable.ts:10](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/indexable.ts#L10)
