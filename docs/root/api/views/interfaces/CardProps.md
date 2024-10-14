@@ -16,7 +16,7 @@ If true, the title will be rendered centered.
 
 #### Defined in
 
-[src/api/ui/views/cards.tsx:29](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/cards.tsx#L29)
+[src/api/ui/views/cards.tsx:29](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/cards.tsx#L29)
 
 ***
 
@@ -28,7 +28,7 @@ The raw content of the card.
 
 #### Defined in
 
-[src/api/ui/views/cards.tsx:23](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/cards.tsx#L23)
+[src/api/ui/views/cards.tsx:23](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/cards.tsx#L23)
 
 ***
 
@@ -40,7 +40,7 @@ optional footer (because why not?)
 
 #### Defined in
 
-[src/api/ui/views/cards.tsx:26](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/cards.tsx#L26)
+[src/api/ui/views/cards.tsx:26](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/cards.tsx#L26)
 
 ***
 
@@ -52,7 +52,7 @@ The title of the card.
 
 #### Defined in
 
-[src/api/ui/views/cards.tsx:20](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/cards.tsx#L20)
+[src/api/ui/views/cards.tsx:20](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/cards.tsx#L20)
 
 ***
 
@@ -64,4 +64,4 @@ the actual value held in this card.
 
 #### Defined in
 
-[src/api/ui/views/cards.tsx:17](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/cards.tsx#L17)
+[src/api/ui/views/cards.tsx:17](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/cards.tsx#L17)

@@ -14,4 +14,4 @@ Editable field for a boolean (true/false) value.
 
 ## Defined in
 
-[src/ui/fields/boolean-field.tsx:12](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/ui/fields/boolean-field.tsx#L12)
+[src/ui/fields/boolean-field.tsx:12](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/ui/fields/boolean-field.tsx#L12)

@@ -26,4 +26,4 @@ The path which the link will be resolved relative to.
 
 ## Defined in
 
-[src/api/ui/embed.tsx:23](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/embed.tsx#L23)
+[src/api/ui/embed.tsx:23](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/embed.tsx#L23)

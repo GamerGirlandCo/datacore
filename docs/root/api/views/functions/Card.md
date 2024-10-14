@@ -18,4 +18,4 @@ A card with a title and content
 
 ## Defined in
 
-[src/api/ui/views/cards.tsx:36](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/cards.tsx#L36)
+[src/api/ui/views/cards.tsx:36](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/cards.tsx#L36)

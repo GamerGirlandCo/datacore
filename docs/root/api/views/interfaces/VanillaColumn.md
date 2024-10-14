@@ -22,7 +22,7 @@ whether this column is editable or not
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:38](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L38)
+[src/api/ui/views/table.tsx:38](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L38)
 
 ***
 
@@ -46,7 +46,7 @@ Rendered when editing the column
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:41](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L41)
+[src/api/ui/views/table.tsx:41](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L41)
 
 ***
 
@@ -58,7 +58,7 @@ The unique ID of this table column; you cannot have multiple columns with the sa
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:23](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L23)
+[src/api/ui/views/table.tsx:23](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L23)
 
 ***
 
@@ -80,7 +80,7 @@ Called when the column value updates.
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:44](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L44)
+[src/api/ui/views/table.tsx:44](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L44)
 
 ***
 
@@ -102,7 +102,7 @@ Called to render the given column value. Can depend on both the specific value a
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:35](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L35)
+[src/api/ui/views/table.tsx:35](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L35)
 
 ***
 
@@ -114,7 +114,7 @@ The title which will display at the top of the column if present.
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:26](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L26)
+[src/api/ui/views/table.tsx:26](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L26)
 
 ***
 
@@ -134,7 +134,7 @@ Value function which maps the row to the value being rendered.
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:32](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L32)
+[src/api/ui/views/table.tsx:32](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L32)
 
 ***
 
@@ -146,4 +146,4 @@ If present, the CSS width to apply to the column. 'minimum' will set the column 
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:29](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L29)
+[src/api/ui/views/table.tsx:29](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L29)

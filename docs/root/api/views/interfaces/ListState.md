@@ -22,7 +22,7 @@ Controls whether paging is enabled for this element. If true, uses default page 
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:29](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/list.tsx#L29)
+[src/api/ui/views/list.tsx:29](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/list.tsx#L29)
 
 ***
 
@@ -45,7 +45,7 @@ rendered as a literal.
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:35](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/list.tsx#L35)
+[src/api/ui/views/list.tsx:35](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/list.tsx#L35)
 
 ***
 
@@ -57,7 +57,7 @@ The full collection of elements in the list.
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:26](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/list.tsx#L26)
+[src/api/ui/views/list.tsx:26](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/list.tsx#L26)
 
 ***
 
@@ -72,4 +72,4 @@ inside of a single div.
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:23](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/list.tsx#L23)
+[src/api/ui/views/list.tsx:23](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/list.tsx#L23)

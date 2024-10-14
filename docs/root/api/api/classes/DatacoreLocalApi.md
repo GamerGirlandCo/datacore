@@ -22,7 +22,7 @@ Creates a horizontal flexbox "grouping" of elements.
 
 #### Defined in
 
-[src/api/local-api.tsx:228](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L228)
+[src/api/local-api.tsx:228](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L228)
 
 ***
 
@@ -48,7 +48,7 @@ A component that renders an icon
 
 #### Defined in
 
-[src/api/local-api.tsx:312](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L312)
+[src/api/local-api.tsx:312](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L312)
 
 ***
 
@@ -70,7 +70,7 @@ Creates a vertical flexbox "stack" of elements.
 
 #### Defined in
 
-[src/api/local-api.tsx:226](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L226)
+[src/api/local-api.tsx:226](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L226)
 
 ## Accessors
 
@@ -86,7 +86,7 @@ Central Obsidian app object.
 
 #### Defined in
 
-[src/api/local-api.tsx:68](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L68)
+[src/api/local-api.tsx:68](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L68)
 
 ***
 
@@ -102,7 +102,7 @@ The internal plugin central datastructure.
 
 #### Defined in
 
-[src/api/local-api.tsx:73](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L73)
+[src/api/local-api.tsx:73](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L73)
 
 ***
 
@@ -118,7 +118,7 @@ Get acess to luxon functions.
 
 #### Defined in
 
-[src/api/local-api.tsx:58](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L58)
+[src/api/local-api.tsx:58](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L58)
 
 ***
 
@@ -134,7 +134,7 @@ Get access to preact functions.
 
 #### Defined in
 
-[src/api/local-api.tsx:63](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L63)
+[src/api/local-api.tsx:63](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L63)
 
 ## Methods
 
@@ -158,7 +158,7 @@ Create a data array from a regular array.
 
 #### Defined in
 
-[src/api/local-api.tsx:150](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L150)
+[src/api/local-api.tsx:150](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L150)
 
 ***
 
@@ -180,7 +180,7 @@ Create a link to a block with the given path and block ID.
 
 #### Defined in
 
-[src/api/local-api.tsx:135](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L135)
+[src/api/local-api.tsx:135](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L135)
 
 ***
 
@@ -196,7 +196,7 @@ The full markdown file metadata for the current file.
 
 #### Defined in
 
-[src/api/local-api.tsx:53](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L53)
+[src/api/local-api.tsx:53](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L53)
 
 ***
 
@@ -212,7 +212,7 @@ The current file path for the local API.
 
 #### Defined in
 
-[src/api/local-api.tsx:48](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L48)
+[src/api/local-api.tsx:48](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L48)
 
 ***
 
@@ -232,7 +232,7 @@ Create a file link pointing to the given path.
 
 #### Defined in
 
-[src/api/local-api.tsx:125](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L125)
+[src/api/local-api.tsx:125](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L125)
 
 ***
 
@@ -254,7 +254,7 @@ Create a link to a header with the given name.
 
 #### Defined in
 
-[src/api/local-api.tsx:130](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L130)
+[src/api/local-api.tsx:130](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L130)
 
 ***
 
@@ -274,7 +274,7 @@ Try to parse the given link, throwing an error if it is invalid.
 
 #### Defined in
 
-[src/api/local-api.tsx:140](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L140)
+[src/api/local-api.tsx:140](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L140)
 
 ***
 
@@ -294,7 +294,7 @@ Try to parse the given query, throwing an error if it is invalid.
 
 #### Defined in
 
-[src/api/local-api.tsx:120](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L120)
+[src/api/local-api.tsx:120](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L120)
 
 ***
 
@@ -327,7 +327,7 @@ return { MyElement };
 
 #### Defined in
 
-[src/api/local-api.tsx:97](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L97)
+[src/api/local-api.tsx:97](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L97)
 
 ***
 
@@ -349,7 +349,7 @@ Resolve a local or absolute path or link to an absolute path.
 
 #### Defined in
 
-[src/api/local-api.tsx:110](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L110)
+[src/api/local-api.tsx:110](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L110)
 
 ***
 
@@ -371,7 +371,7 @@ Sets the completion status of a given task programmatically.
 
 #### Defined in
 
-[src/api/local-api.tsx:161](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L161)
+[src/api/local-api.tsx:161](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L161)
 
 ***
 
@@ -393,7 +393,7 @@ Sets the text of a given task programmatically.
 
 #### Defined in
 
-[src/api/local-api.tsx:156](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L156)
+[src/api/local-api.tsx:156](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L156)
 
 ***
 
@@ -413,7 +413,7 @@ Try to parse a link, returning a monadic success/failure result.
 
 #### Defined in
 
-[src/api/local-api.tsx:145](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L145)
+[src/api/local-api.tsx:145](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L145)
 
 ***
 
@@ -433,7 +433,7 @@ Try to parse the given query, returning a monadic success/failure result.
 
 #### Defined in
 
-[src/api/local-api.tsx:115](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L115)
+[src/api/local-api.tsx:115](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L115)
 
 ***
 
@@ -463,7 +463,7 @@ Memoize the input automatically and process it using a DataArray; returns a vani
 
 #### Defined in
 
-[src/api/local-api.tsx:182](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L182)
+[src/api/local-api.tsx:182](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L182)
 
 ***
 
@@ -485,7 +485,7 @@ Use the file metadata for the current file. Automatically updates the view when 
 
 #### Defined in
 
-[src/api/local-api.tsx:187](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L187)
+[src/api/local-api.tsx:187](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L187)
 
 ***
 
@@ -507,7 +507,7 @@ Use the current path. Automatically updates the view if the path changes (though
 
 #### Defined in
 
-[src/api/local-api.tsx:192](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L192)
+[src/api/local-api.tsx:192](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L192)
 
 ***
 
@@ -531,7 +531,7 @@ Use the file metadata for a specific file. Automatically updates the view when t
 
 #### Defined in
 
-[src/api/local-api.tsx:198](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L198)
+[src/api/local-api.tsx:198](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L198)
 
 ***
 
@@ -556,7 +556,7 @@ execution, such as index revision and total search duration.
 
 #### Defined in
 
-[src/api/local-api.tsx:211](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L211)
+[src/api/local-api.tsx:211](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L211)
 
 ***
 
@@ -578,7 +578,7 @@ Automatically refresh the view whenever the index updates; returns the latest in
 
 #### Defined in
 
-[src/api/local-api.tsx:203](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L203)
+[src/api/local-api.tsx:203](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L203)
 
 ***
 
@@ -602,7 +602,7 @@ Run a query, automatically re-running it whenever the vault changes.
 
 #### Defined in
 
-[src/api/local-api.tsx:216](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L216)
+[src/api/local-api.tsx:216](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L216)
 
 ## Properties
 
@@ -614,7 +614,7 @@ Utilities for coercing types into one specific type for easier programming.
 
 #### Defined in
 
-[src/api/local-api.tsx:107](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L107)
+[src/api/local-api.tsx:107](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L107)
 
 ***
 
@@ -626,7 +626,7 @@ Renders an obsidian-style link directly and more effieicntly than rendering mark
 
 #### Defined in
 
-[src/api/local-api.tsx:263](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L263)
+[src/api/local-api.tsx:263](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L263)
 
 ***
 
@@ -638,7 +638,7 @@ Create a vanilla Obsidian embed for the given link.
 
 #### Defined in
 
-[src/api/local-api.tsx:266](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L266)
+[src/api/local-api.tsx:266](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L266)
 
 ***
 
@@ -650,7 +650,7 @@ Renders a literal value in a pretty way that respects settings.
 
 #### Defined in
 
-[src/api/local-api.tsx:231](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L231)
+[src/api/local-api.tsx:231](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L231)
 
 ***
 
@@ -662,7 +662,7 @@ Renders markdown using the Obsidian markdown renderer, optionally attaching addi
 
 #### Defined in
 
-[src/api/local-api.tsx:237](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L237)
+[src/api/local-api.tsx:237](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L237)
 
 ***
 
@@ -674,4 +674,4 @@ Create an explicit 'span' embed which extracts a span of lines from a markdown f
 
 #### Defined in
 
-[src/api/local-api.tsx:287](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/local-api.tsx#L287)
+[src/api/local-api.tsx:287](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/local-api.tsx#L287)
