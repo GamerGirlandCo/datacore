@@ -16,4 +16,4 @@ A link to this linkable object.
 
 #### Defined in
 
-[src/index/types/indexable.ts:32](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/indexable.ts#L32)
+[src/index/types/indexable.ts:32](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/index/types/indexable.ts#L32)
