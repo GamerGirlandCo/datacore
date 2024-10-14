@@ -12,7 +12,7 @@ The actual string in frontmatter with exact casing.
 
 #### Defined in
 
-[src/index/types/markdown.ts:715](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/markdown.ts#L715)
+[src/index/types/markdown.ts:715](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/index/types/markdown.ts#L715)
 
 ***
 
@@ -24,7 +24,7 @@ The raw value of the frontmatter entry before parsing; generally a string or num
 
 #### Defined in
 
-[src/index/types/markdown.ts:719](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/markdown.ts#L719)
+[src/index/types/markdown.ts:719](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/index/types/markdown.ts#L719)
 
 ***
 
@@ -36,4 +36,4 @@ The parsed value of the frontmatter entry (date, duration, etc.).
 
 #### Defined in
 
-[src/index/types/markdown.ts:717](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/index/types/markdown.ts#L717)
+[src/index/types/markdown.ts:717](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/index/types/markdown.ts#L717)
