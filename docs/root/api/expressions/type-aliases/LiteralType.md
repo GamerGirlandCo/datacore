@@ -6,4 +6,4 @@ The literal types supported by the query engine.
 
 ## Defined in
 
-[src/expression/literal.ts:14](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/expression/literal.ts#L14)
+[src/expression/literal.ts:14](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/expression/literal.ts#L14)

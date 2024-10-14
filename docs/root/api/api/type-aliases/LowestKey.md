@@ -10,4 +10,4 @@ Finds the value of the lowest value type in a grouping.
 
 ## Defined in
 
-[src/api/data-array.ts:13](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/data-array.ts#L13)
+[src/api/data-array.ts:13](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/data-array.ts#L13)
