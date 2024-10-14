@@ -18,4 +18,4 @@ A component that renders an icon
 
 ## Defined in
 
-[src/api/ui/basics.tsx:205](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/basics.tsx#L205)
+[src/api/ui/basics.tsx:205](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/basics.tsx#L205)

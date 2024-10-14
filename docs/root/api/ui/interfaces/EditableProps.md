@@ -16,7 +16,7 @@ Backup default renderer for this object.
 
 #### Defined in
 
-[src/ui/fields/editable.tsx:43](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/ui/fields/editable.tsx#L43)
+[src/ui/fields/editable.tsx:44](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/ui/fields/editable.tsx#L44)
 
 ***
 
@@ -28,7 +28,7 @@ Dispatcher for controlling the edit state, tracking updates, commits, and so on.
 
 #### Defined in
 
-[src/ui/fields/editable.tsx:47](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/ui/fields/editable.tsx#L47)
+[src/ui/fields/editable.tsx:48](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/ui/fields/editable.tsx#L48)
 
 ***
 
@@ -40,7 +40,7 @@ Node which points to the actual editor.
 
 #### Defined in
 
-[src/ui/fields/editable.tsx:45](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/ui/fields/editable.tsx#L45)
+[src/ui/fields/editable.tsx:46](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/ui/fields/editable.tsx#L46)
 
 ***
 
@@ -52,7 +52,7 @@ Source file from which the editable value originates.
 
 #### Defined in
 
-[src/ui/fields/editable.tsx:41](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/ui/fields/editable.tsx#L41)
+[src/ui/fields/editable.tsx:42](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/ui/fields/editable.tsx#L42)
 
 ***
 
@@ -64,4 +64,4 @@ The current state of the editor.
 
 #### Defined in
 
-[src/ui/fields/editable.tsx:49](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/ui/fields/editable.tsx#L49)
+[src/ui/fields/editable.tsx:50](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/ui/fields/editable.tsx#L50)
