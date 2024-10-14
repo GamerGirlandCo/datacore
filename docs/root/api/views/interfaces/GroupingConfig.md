@@ -26,4 +26,4 @@ How a grouping with the given key and set of rows should be handled.
 
 #### Defined in
 
-[src/api/ui/views/table.tsx:52](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/ui/views/table.tsx#L52)
+[src/api/ui/views/table.tsx:52](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/ui/views/table.tsx#L52)

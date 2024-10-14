@@ -12,4 +12,4 @@ A grouping, which can be either:
 
 ## Defined in
 
-[src/expression/literal.ts:404](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/expression/literal.ts#L404)
+[src/expression/literal.ts:404](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/expression/literal.ts#L404)

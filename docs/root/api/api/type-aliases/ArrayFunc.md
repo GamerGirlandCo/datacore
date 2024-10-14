@@ -24,4 +24,4 @@ A function which maps an array element to some value.
 
 ## Defined in
 
-[src/api/data-array.ts:7](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/api/data-array.ts#L7)
+[src/api/data-array.ts:7](https://github.com/blacksmithgu/datacore/blob/b2f12b09abf3864956181ba4f5c7075bc281ce27/src/api/data-array.ts#L7)
