@@ -14,4 +14,4 @@ An editor which allows selecting a numneric value.
 
 ## Defined in
 
-[src/ui/fields/editable.tsx:246](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/ui/fields/editable.tsx#L246)
+[src/ui/fields/editable.tsx:246](https://github.com/blacksmithgu/datacore/blob/7b0c019def7e079c43dc5dbea32d9f610e95285b/src/ui/fields/editable.tsx#L246)
