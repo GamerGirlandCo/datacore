@@ -201,11 +201,3 @@ return function View() {
     return <ListItem text="whoa!" />;
 }
 ```
-
-## Modules
-
-- [api](api/index.md)
-- [expressions](expressions/index.md)
-- [indexables](indexables/index.md)
-- [ui](ui/index.md)
-- [views](views/index.md)
