@@ -12,7 +12,7 @@ Whether paging is enabled.
 
 #### Defined in
 
-[src/api/ui/views/paging.tsx:178](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/paging.tsx#L178)
+[src/api/ui/views/paging.tsx:178](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/paging.tsx#L178)
 
 ***
 
@@ -24,7 +24,7 @@ The current page.
 
 #### Defined in
 
-[src/api/ui/views/paging.tsx:182](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/paging.tsx#L182)
+[src/api/ui/views/paging.tsx:182](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/paging.tsx#L182)
 
 ***
 
@@ -36,7 +36,7 @@ The size of each page.
 
 #### Defined in
 
-[src/api/ui/views/paging.tsx:184](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/paging.tsx#L184)
+[src/api/ui/views/paging.tsx:184](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/paging.tsx#L184)
 
 ***
 
@@ -48,7 +48,7 @@ Whether the view should scroll when the page changes.
 
 #### Defined in
 
-[src/api/ui/views/paging.tsx:180](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/paging.tsx#L180)
+[src/api/ui/views/paging.tsx:180](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/paging.tsx#L180)
 
 ***
 
@@ -68,7 +68,7 @@ Update the current page.
 
 #### Defined in
 
-[src/api/ui/views/paging.tsx:188](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/paging.tsx#L188)
+[src/api/ui/views/paging.tsx:188](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/paging.tsx#L188)
 
 ***
 
@@ -80,4 +80,4 @@ The total number of pages for this data.
 
 #### Defined in
 
-[src/api/ui/views/paging.tsx:186](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/paging.tsx#L186)
+[src/api/ui/views/paging.tsx:186](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/paging.tsx#L186)

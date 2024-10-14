@@ -14,4 +14,4 @@ General properties for configuring a callout.
 
 ## Defined in
 
-[src/api/ui/views/callout.tsx:39](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/callout.tsx#L39)
+[src/api/ui/views/callout.tsx:39](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/callout.tsx#L39)

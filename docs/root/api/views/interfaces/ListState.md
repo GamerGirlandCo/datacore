@@ -2,6 +2,10 @@
 
 State for a [ListView](../functions/ListView.md)
 
+## Extended by
+
+- [`TaskProps`](TaskProps.md)
+
 ## Type Parameters
 
 • **T**
@@ -18,7 +22,7 @@ Controls whether paging is enabled for this element. If true, uses default page 
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:29](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/list.tsx#L29)
+[src/api/ui/views/list.tsx:29](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/list.tsx#L29)
 
 ***
 
@@ -41,7 +45,7 @@ rendered as a literal.
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:35](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/list.tsx#L35)
+[src/api/ui/views/list.tsx:35](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/list.tsx#L35)
 
 ***
 
@@ -53,7 +57,7 @@ The full collection of elements in the list.
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:26](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/list.tsx#L26)
+[src/api/ui/views/list.tsx:26](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/list.tsx#L26)
 
 ***
 
@@ -68,4 +72,4 @@ inside of a single div.
 
 #### Defined in
 
-[src/api/ui/views/list.tsx:23](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/ui/views/list.tsx#L23)
+[src/api/ui/views/list.tsx:23](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/ui/views/list.tsx#L23)

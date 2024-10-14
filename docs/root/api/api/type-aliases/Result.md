@@ -13,4 +13,4 @@ by using the return value instead of an exception.
 
 ## Defined in
 
-[src/api/result.ts:88](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/api/result.ts#L88)
+[src/api/result.ts:88](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/api/result.ts#L88)

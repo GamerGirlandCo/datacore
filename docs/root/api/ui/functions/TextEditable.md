@@ -14,4 +14,4 @@ Editor which supports multi-line text editing; note this is a very simple input 
 
 ## Defined in
 
-[src/ui/fields/editable.tsx:300](https://github.com/GamerGirlandCo/datacore/blob/7f32893e5430e552f1b1164e828ac7a411d6e24f/src/ui/fields/editable.tsx#L300)
+[src/ui/fields/editable.tsx:296](https://github.com/GamerGirlandCo/datacore/blob/73f36550e501eb29175b69b6a097ff3d4401efc7/src/ui/fields/editable.tsx#L296)
