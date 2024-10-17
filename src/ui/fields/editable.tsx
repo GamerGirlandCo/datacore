@@ -1,4 +1,4 @@
-/** 
+/**
  * @module ui
  */
 import { Fragment, VNode } from "preact";
@@ -18,10 +18,10 @@ import { RatingEditable } from "./rating";
 import "./fields.css";
 import { useFinalizer } from "utils/fields";
 
-/** Core state for tracking an editable object. 
+/** Core state for tracking an editable object.
  * @group States
  * @typeParam T - the type of the value being edited
-*/
+ */
 export interface EditableState<T> {
     /** Whether the value is currently being edited. */
     isEditing?: boolean;
@@ -52,7 +52,7 @@ export interface EditableProps<T> {
 
 /**
  *  Actions which update/change the state of an editable.
- *  
+ *
  * @internal
  * */
 export type EditableAction<T> =
@@ -70,10 +70,10 @@ export type EditableAction<T> =
           newValue: T;
       };
 
-/** Default reducer for applying actions to the editable state. 
- * 
+/** Default reducer for applying actions to the editable state.
+ *
  * @internal
-*/
+ */
 export function editableReducer<T>(
     { content, updater, ...rest }: EditableState<T>,
     action: EditableAction<T>
@@ -92,16 +92,16 @@ export function editableReducer<T>(
     }
 }
 
-/** Provides state management for an editable field. 
+/** Provides state management for an editable field.
  * @internal
-*/
+ */
 export function useEditableDispatch<T>(
     initial: EditableState<T> | (() => EditableState<T>)
 ): [EditableState<T>, Dispatch<EditableAction<T>>] {
     const init = useMemo(() => (typeof initial == "function" ? initial() : initial), [initial]);
     return useReducer(editableReducer as Reducer<EditableState<T>, EditableAction<T>>, init, (s) => init);
 }
-/** 
+/**
  * a higher-order-component for editing fields.
  * @param props
  * @group Editable Components
@@ -128,15 +128,15 @@ export function Editable<T>({ sourcePath, defaultRender, editor, dispatch, state
         </span>
     );
 }
-/** A single selectable value. 
-*/
+/** A single selectable value.
+ */
 type SelectableBase = string | number;
 /** A type for either multi- or single-select values. */
 type SelectableType = SelectableBase | SelectableBase[];
 
-/** Editable which allows for selection from a list of options. 
+/** Editable which allows for selection from a list of options.
  * @group Editable Components
-*/
+ */
 export function SelectableEditable({
     isEditing,
     content,
@@ -192,9 +192,9 @@ export function SelectableEditable({
     return <Editable editor={editor} dispatch={dispatch} state={{ isEditing, content, updater }} />;
 }
 
-/** Editable which allows for selecting a date. 
+/** Editable which allows for selecting a date.
  * @group Editable Components
-*/
+ */
 export function DateEditable({
     dispatch,
     sourcePath,
@@ -240,9 +240,9 @@ export function DateEditable({
     return <Editable<DateTime | string | null> dispatch={dispatch} state={rest} editor={editorNode} />;
 }
 
-/** An editor which allows selecting a numneric value. 
+/** An editor which allows selecting a numneric value.
  * @group Editable Components
-*/
+ */
 export function NumberEditable(props: EditableState<number>) {
     const cfc = useContext(CURRENT_FILE_CONTEXT);
 
@@ -290,9 +290,9 @@ export function NumberEditable(props: EditableState<number>) {
     );
 }
 
-/** Editor which supports multi-line text editing; note this is a very simple input and does not support most markdown metadata. 
+/** Editor which supports multi-line text editing; note this is a very simple input and does not support most markdown metadata.
  * @group Editable Components
-*/
+ */
 export function TextEditable(props: EditableState<string> & { markdown?: boolean; sourcePath: string }) {
     const cfc = useContext(CURRENT_FILE_CONTEXT);
     const [state, dispatch] = useEditableDispatch<string>(() => ({
@@ -383,7 +383,7 @@ export function UncontrolledTextEditable({
 }
 
 /** An editable list of items.
- * 
+ *
  * @group Editable Components
  */
 export function EditableListField({
