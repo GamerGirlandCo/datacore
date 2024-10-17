@@ -1,4 +1,4 @@
-/** 
+/**
  * @module api
  */
 import { DatacoreApi } from "api/api";
@@ -39,14 +39,14 @@ import {
 import { completeTask } from "utils/task";
 import { TreeTableView } from "./ui/views/tree-table";
 
-/** Local API provided to specific codeblocks when they are executing. 
+/** Local API provided to specific codeblocks when they are executing.
  * @group Core
-*/
+ */
 export class DatacoreLocalApi {
-	/**
-	 * @private
-	 */
-	private scriptCache: ScriptCache;
+    /**
+     * @private
+     */
+    private scriptCache: ScriptCache;
 
     public constructor(public api: DatacoreApi, public path: string) {
         this.scriptCache = new ScriptCache(this.core.datastore);

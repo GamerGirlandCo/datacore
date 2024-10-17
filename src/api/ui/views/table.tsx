@@ -1,6 +1,6 @@
 /**
  * @module views
-*/
+ */
 import { GroupElement, Grouping, Groupings, Literal, Literals } from "expression/literal";
 import { Dispatch, useCallback, useContext, useMemo, useRef } from "preact/hooks";
 import { CURRENT_FILE_CONTEXT, Lit } from "ui/markdown";
@@ -16,11 +16,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
-/** A simple column definition which allows for custom renderers and titles. 
+/** A simple column definition which allows for custom renderers and titles.
  * @group Props
  * @typeParam T - the type of each row
  * @typeParam V - the type of the value in this column
-*/
+ */
 export interface VanillaColumn<T, V = Literal> {
     /** The unique ID of this table column; you cannot have multiple columns with the same ID in a given table. */
     id: string;
@@ -47,17 +47,17 @@ export interface VanillaColumn<T, V = Literal> {
 		onUpdate?:(value: V, object: T) => unknown;
 }
 
-/** Metadata for configuring how groupings in the data should be handled. 
+/** Metadata for configuring how groupings in the data should be handled.
  * @group Props
-*/
+ */
 export interface GroupingConfig<T> {
     /** How a grouping with the given key and set of rows should be handled. */
     render?: (key: Literal, rows: Grouping<T>) => Literal | VNode;
 }
 
-/** All available props for a vanilla table. 
+/** All available props for a vanilla table.
  * @group Props
-*/
+ */
 export interface VanillaTableProps<T> {
     /** The columns to render in the table. */
     columns: VanillaColumn<T>[];
@@ -81,10 +81,10 @@ export interface VanillaTableProps<T> {
     scrollOnPaging?: boolean | number;
 }
 
-/** A simple table which supports grouping, sorting, paging, and custom columns. 
+/** A simple table which supports grouping, sorting, paging, and custom columns.
  * @group Components
- * @param props 
-*/
+ * @param props
+ */
 export function VanillaTable<T>(props: VanillaTableProps<T>) {
     // Cache columns by reference equality of the specific columns. Columns have various function references
     // inside them and so cannot be compared by value equality.
@@ -141,9 +141,9 @@ export function VanillaTable<T>(props: VanillaTableProps<T>) {
     );
 }
 
-/** An individual column cell in the table. 
+/** An individual column cell in the table.
  * @hidden
-*/
+ */
 export function VanillaTableHeaderCell<T>({ column }: { column: VanillaColumn<T> }) {
     const header: string | VNode = useMemo(() => {
         if (!column.title) {
@@ -168,9 +168,9 @@ export function VanillaTableHeaderCell<T>({ column }: { column: VanillaColumn<T>
     );
 }
 
-/** A grouping in the table, or an individual row. 
+/** A grouping in the table, or an individual row.
  * @hidden
-*/
+ */
 export function VanillaRowGroup<T>({
     level,
     columns,
@@ -198,9 +198,9 @@ export function VanillaRowGroup<T>({
     }
 }
 
-/** A header of a grouped set of columns. 
+/** A header of a grouped set of columns.
  * @hidden
-*/
+ */
 export function TableGroupHeader<T>({
     level,
     value,
@@ -231,9 +231,9 @@ export function TableGroupHeader<T>({
     );
 }
 
-/** A single row inside the table. 
+/** A single row inside the table.
  * @hidden
-*/
+ */
 export function TableRow<T>({ level, row, columns }: { level: number; row: T; columns: VanillaColumn<T>[] }) {
     return (
         <tr className="datacore-table-row" style={level ? `padding-left: ${level * 5}px` : undefined}>
@@ -244,9 +244,9 @@ export function TableRow<T>({ level, row, columns }: { level: number; row: T; co
     );
 }
 
-/** A single cell inside of a row of the table. 
+/** A single cell inside of a row of the table.
  * @hidden
-*/
+ */
 export function TableRowCell<T>({ row, column }: { row: T; column: VanillaColumn<T> }) {
     const value = useMemo(() => column.value(row), [row, column.value]);
 		const [editableState, dispatch] = useEditableDispatch<typeof value>({
