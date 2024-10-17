@@ -1,4 +1,4 @@
-/** 
+/**
  * @module api
  */
 import { DatacoreApi } from "api/api";
@@ -31,14 +31,14 @@ import { setTaskText, useSetField } from "utils/fields";
 import { ControlledTextEditable, EditableFieldCheckbox, EditableTextField } from "ui/fields/editable-fields";
 import { completeTask, rewriteTask } from "utils/task";
 
-/** Local API provided to specific codeblocks when they are executing. 
+/** Local API provided to specific codeblocks when they are executing.
  * @group Core
-*/
+ */
 export class DatacoreLocalApi {
-	/**
-	 * @private
-	 */
-	private scriptCache: ScriptCache;
+    /**
+     * @private
+     */
+    private scriptCache: ScriptCache;
 
     public constructor(public api: DatacoreApi, public path: string) {
         this.scriptCache = new ScriptCache(this.core.datastore);
