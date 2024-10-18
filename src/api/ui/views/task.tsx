@@ -3,9 +3,9 @@
  */
 
 import { MarkdownListItem, MarkdownTaskItem } from "index/types/markdown";
-import { DefaultListElement, EditableListElement, ListState } from "api/ui/views/list";
+import { EditableListElement, ListState } from "api/ui/views/list";
 import { useStableCallback } from "ui/hooks";
-import { Fragment, Ref } from "preact";
+import { Fragment } from "preact";
 import { APP_CONTEXT, DATACORE_CONTEXT } from "ui/markdown";
 import { JSXInternal } from "preact/src/jsx";
 import { Dispatch, useContext, useMemo, useRef, useState } from "preact/hooks";
@@ -13,11 +13,9 @@ import { completeTask, rewriteTask } from "utils/task";
 import { Literal, Literals } from "expression/literal";
 import {
     EditableAction,
-    EditableElement,
     EditableListField,
     EditableState,
     TextEditable,
-    UncontrolledTextEditable,
     useEditableDispatch,
 } from "ui/fields/editable";
 import { setInlineField } from "index/import/inline-field";
