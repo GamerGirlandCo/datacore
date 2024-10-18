@@ -19,7 +19,6 @@ import {
     useEditableDispatch,
 } from "ui/fields/editable";
 import { setInlineField } from "index/import/inline-field";
-import { BaseFieldProps } from "ui/fields/common-props";
 import { Field } from "expression/field";
 import { DateTime } from "luxon";
 import "styles/lists.css";
@@ -31,8 +30,6 @@ import "styles/lists.css";
 export interface TaskProps extends ListState<MarkdownTaskItem | MarkdownListItem> {
     /** task states to cycle through, if specified */
     additionalStates?: string[];
-    /** fields to display under each item in this task list */
-    displayedFields?: (BaseFieldProps<Literal> & { key: string })[];
 }
 
 /** 

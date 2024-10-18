@@ -6,6 +6,7 @@ import { CURRENT_FILE_CONTEXT, Lit } from "ui/markdown";
 
 import { VNode, isValidElement } from "preact";
 import { useContext } from "preact/hooks";
+import { BaseFieldProps } from "ui/fields/common-props";
 
 /**
  * State for a {@link ListView}
@@ -33,6 +34,9 @@ export interface ListState<T> {
      * rendered as a literal.
      */
     renderer?: (element: T, index: number) => React.ReactNode | Literal;
+		
+		/** fields to display under each item in this task list */
+    displayedFields?: (BaseFieldProps<Literal> & { key: string })[];
 }
 
 /**
