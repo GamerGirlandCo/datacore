@@ -152,7 +152,7 @@ export function ControlledEditable<T, P = unknown>({
         inline: false,
         isEditing: false,
     }));
-    return <Editor {...props} {...state} />;
+    return <Editor dispatch={dispatch} {...props} {...state} />;
 }
 
 /** A single selectable value.
@@ -288,7 +288,7 @@ export function NumberEditable(props: EditableState<number>) {
         [value.current, state.content, state.updater, state.isEditing]
     );
 
-    const finalize = useFinalizer(value.current, dispatch) 
+    const finalize = useFinalizer(value.current, dispatch);
     const onInput = useStableCallback(
         async (e: KeyboardEvent) => {
             if (e.key === "Enter") {
@@ -335,7 +335,7 @@ export function TextEditable(props: EditableState<string> & { markdown?: boolean
         dispatch({ type: "content-changed", newValue: state.content });
     }, [props.content, state.content]);
 
-    const finalize = useFinalizer(state.content, dispatch) 
+    const finalize = useFinalizer(state.content, dispatch);
     const onInput = useStableCallback(
         async (e: KeyboardEvent) => {
             if (props.inline) {
@@ -370,7 +370,9 @@ export function TextEditable(props: EditableState<string> & { markdown?: boolean
             )}
         </Fragment>
     );
-    const editor = <UncontrolledTextEditable onInput={onInput} inline={props.inline} dispatch={dispatch} text={text.current} />;
+    const editor = (
+        <UncontrolledTextEditable onInput={onInput} inline={props.inline} dispatch={dispatch} text={text.current} />
+    );
     return (
         <span className="has-texteditable" onDblClick={dblClick}>
             <Editable<string> dispatch={dispatch} editor={editor} defaultRender={readonlyEl} state={state} />
@@ -383,20 +385,20 @@ export function UncontrolledTextEditable({
     inline,
     text,
     dispatch,
-		onInput
+    onInput,
 }: {
     inline?: boolean;
     text: string;
     dispatch?: Dispatch<EditableAction<string>>;
-		onInput?: (e: KeyboardEvent) => unknown;
+    onInput?: (e: KeyboardEvent) => unknown;
 }) {
-		const [txt, setText] = useState(text);
-		useEffect(() => {
-      dispatch && dispatch({ newValue: txt, type: "content-changed" });
-		}, [txt])
+    const [txt, setText] = useState(text);
+    useEffect(() => {
+        dispatch && dispatch({ newValue: txt, type: "content-changed" });
+    }, [txt]);
     const onChangeCb = useStableCallback(
         async (evt: ChangeEvent) => {
-					setText((evt.currentTarget as HTMLTextAreaElement).value)
+            setText((evt.currentTarget as HTMLTextAreaElement).value);
         },
         [text, dispatch]
     );
