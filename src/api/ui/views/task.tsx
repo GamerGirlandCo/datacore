@@ -116,11 +116,11 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
     const eState: EditableState<string> = useMemo(() => {
         return {
             updater: onChanger,
-            content: item.$cleanText,
+            content: item.$cleantext,
             inline: false,
             isEditing: false,
         } as EditableState<string>;
-    }, [item.$cleanText, item.$text]);
+    }, [item.$cleantext, item.$text]);
     const theElement = useMemo(
         () => <TextEditable sourcePath={item.$file} {...eState} />,
         [eState.content, item, props.rows]
