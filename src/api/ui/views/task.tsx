@@ -3,7 +3,7 @@
  */
 
 import { MarkdownListItem, MarkdownTaskItem } from "index/types/markdown";
-import { DefaultListElement, ListState } from "api/ui/views/list";
+import { DefaultListElement, EditableListElement, ListState } from "api/ui/views/list";
 import { useStableCallback } from "ui/hooks";
 import { Fragment, Ref } from "preact";
 import { APP_CONTEXT, DATACORE_CONTEXT } from "ui/markdown";
@@ -13,15 +13,18 @@ import { completeTask, rewriteTask } from "utils/task";
 import { Literal, Literals } from "expression/literal";
 import {
     EditableAction,
+    EditableElement,
     EditableListField,
     EditableState,
     TextEditable,
+    UncontrolledTextEditable,
     useEditableDispatch,
 } from "ui/fields/editable";
 import { setInlineField } from "index/import/inline-field";
 import { Field } from "expression/field";
 import { DateTime } from "luxon";
 import "styles/lists.css";
+import { ControlledEditableTextField } from "ui/fields/editable-fields";
 
 /**
  * Props passed to the task list component.
@@ -32,7 +35,7 @@ export interface TaskProps extends ListState<MarkdownTaskItem | MarkdownListItem
     additionalStates?: string[];
 }
 
-/** 
+/**
  * Represents a list of tasks.
  * @param props
  * @group Components
@@ -40,7 +43,15 @@ export interface TaskProps extends ListState<MarkdownTaskItem | MarkdownListItem
 export function TaskList({
     rows: items,
     additionalStates: states,
-    renderer: listRenderer = (item, index) => <DefaultListElement element={item} />,
+    renderer: listRenderer = (item, index) => (
+        <EditableListElement<string>
+            onUpdate={useListItemEditing(item)}
+            element={item.$text!}
+						file={item.$file}
+						editorProps={{inline: false}}
+            editor={(it) => ControlledEditableTextField}
+        />
+    ),
     ...rest
 }: TaskProps) {
     const content = useMemo(() => {
@@ -50,7 +61,12 @@ export function TaskList({
                     item instanceof MarkdownTaskItem ? (
                         <Task state={{ ...rest, additionalStates: states }} item={item} />
                     ) : (
-                        listRenderer(item, ind)
+                        <li>
+                            {listRenderer(item, ind)}
+                            <div className="datacore-list-item-fields">
+                                <ListItemFields displayedFields={rest.displayedFields} item={item} />
+                            </div>
+                        </li>
                     )
                 )}
             </ul>
@@ -58,7 +74,7 @@ export function TaskList({
     }, [items, states]);
     return <Fragment>{!!items && content}</Fragment>;
 }
-/** 
+/**
  * Represents a single item in a task listing.
  * @param props - the component's props
  * @param props.item - the current task being rendered
@@ -97,22 +113,11 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
         const nv = completed ? DateTime.now().toFormat(settings.defaultDateFormat) : null;
         completedRef.current && completedRef.current({ type: "commit", newValue: nv });
     }, []);
-    const onChanger = useStableCallback(
-        async (val: Literal) => {
-            if (typeof val === "string") {
-                let withFields = `${val}${Object.keys(item.$infields).length ? " " : ""}`;
-                for (let field in item.$infields) {
-                    withFields = setInlineField(withFields, field, item.$infields[field].raw);
-                }
-                await rewriteTask(app.vault, core, item, item.$status, withFields);
-            }
-        },
-        [item.$status, item]
-    );
+    
     const checked = useMemo(() => item.$status !== " ", [item.$status]);
     const eState: EditableState<string> = useMemo(() => {
         return {
-            updater: onChanger,
+            updater: useListItemEditing(item),
             content: item.$cleantext,
             inline: false,
             isEditing: false,
@@ -138,11 +143,7 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
                 <div className="datacore-list-item-content">
                     {theElement}
                     <div className="datacore-list-item-fields">
-                        <ListItemFields
-                            displayedFields={props.displayedFields}
-                            item={item}
-                            completedRef={completedRef}
-                        />
+                        <ListItemFields displayedFields={props.displayedFields} item={item} />
                     </div>
                 </div>
             </div>
@@ -183,24 +184,35 @@ function CollapseIndicator({
     );
 }
 
-/** 
+/**
  * Displays an editable set of fields below a task or list item.
  * @hidden
  * @group Components
  */
 export function ListItemFields({
-    displayedFields = [],
+    displayedFields: displayedFieldsProp = [],
     item,
-    completedRef,
 }: {
     displayedFields?: TaskProps["displayedFields"];
-    item: MarkdownTaskItem;
-    completedRef: Ref<Dispatch<EditableAction<Literal>>>;
+    item: MarkdownTaskItem | MarkdownListItem;
 }) {
     const app = useContext(APP_CONTEXT);
     const core = useContext(DATACORE_CONTEXT);
     const { settings } = core;
-
+    const displayedFields = useMemo(() => {
+        if (displayedFieldsProp.length) return displayedFieldsProp;
+        else {
+            return Object.values(item.$infields).map((f) => {
+                return {
+                    key: f.key,
+                    type: Literals.typeOf(f.value),
+                    config: {},
+                    editable: true,
+                    renderAs: "raw",
+                } as NonNullable<TaskProps["displayedFields"]>[0];
+            });
+        }
+    }, [displayedFieldsProp, item.$infields, item]);
     return (
         <>
             {displayedFields.map((ifield) => {
@@ -235,7 +247,13 @@ export function ListItemFields({
                                     );
                                 }
                                 withFields = setInlineField(item.$text, ifield.key, dateString(val));
-                                rewriteTask(app.vault, core, item, item.$status, withFields);
+                                rewriteTask(
+                                    app.vault,
+                                    core,
+                                    item,
+                                    item instanceof MarkdownTaskItem ? item.$status : " ",
+                                    withFields
+                                );
                             }
                         },
                         [item.$infields]
@@ -262,4 +280,22 @@ export function ListItemFields({
             })}
         </>
     );
+}
+
+function useListItemEditing(item: MarkdownTaskItem | MarkdownListItem) {
+	const app = useContext(APP_CONTEXT);
+	const core = useContext(DATACORE_CONTEXT);
+	const status = useMemo(() => item instanceof MarkdownTaskItem ? item.$status : " ", [item]);
+    return useStableCallback(
+        async (val: Literal) => {
+            if (typeof val === "string") {
+                let withFields = `${val}${Object.keys(item.$infields).length ? " " : ""}`;
+                for (let field in item.$infields) {
+                    withFields = setInlineField(withFields, field, item.$infields[field].raw);
+                }
+                await rewriteTask(app.vault, core, item, status, withFields);
+            }
+        },
+        [status, item]
+    ); 
 }
