@@ -28,10 +28,10 @@ export function EditableTextField(props: {
 }) {
     const { field, inline, dispatch } = props;
 
-    return <ControlledTextEditable text={field.value as string} inline={inline} dispatch={dispatch} />;
+    return <ControlledEditableTextField text={field.value as string} inline={inline} dispatch={dispatch} />;
 }
 
-export function ControlledTextEditable(props: {
+export function ControlledEditableTextField(props: {
     text: string;
     inline: boolean;
     dispatch: Dispatch<EditableAction<string>>;
