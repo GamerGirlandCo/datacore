@@ -102,7 +102,7 @@ export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTa
     let match = LIST_ITEM_REGEX.exec(filetext[task.$line]);
     if (!match || match[2].length == 0) return;
 
-    let taskTextParts = task.$text.split("\n");
+    let taskTextParts = task.$text!.split("\n");
     // if (taskTextParts[0].trim() != match[3].trim()) return;
 
     // We have a positive match here at this point, so go ahead and do the rewrite of the status.
@@ -114,7 +114,7 @@ export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTa
             desiredParts.slice(1).map((l) => initialSpacing + "\t" + l.trimStart())
         );
 
-        filetext.splice(task.$line, task.$text.split("\n").length, ...newTextLines);
+        filetext.splice(task.$line, task.$text!.split("\n").length, ...newTextLines);
     } else {
         filetext[task.$line] = `${initialSpacing}${task.$symbol} [${desiredStatus}] ${taskTextParts[0].trim()}`;
     }
@@ -136,7 +136,7 @@ export async function completeTask(completed: boolean, task: MarkdownTaskItem, v
     for (const t of tasksToComplete) {
         let newText = setTaskCompletion(
             t,
-            t.$text,
+            t.$text!,
             core.settings.taskCompletionUseEmojiShorthand,
             core.settings.taskCompletionText,
             core.settings.defaultDateFormat,
