@@ -89,8 +89,8 @@ export function setTaskCompletion(
 export const LIST_ITEM_REGEX = /^[\s>]*(\d+\.|\d+\)|\*|-|\+)\s*(\[.{0,1}\])?\s*(.*)$/mu;
 
 /** Rewrite a task with the given completion status and new text. */
-export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTaskItem, desiredStatus: string, desiredText?: string) {
-    if (desiredStatus == task.$status && (desiredText == undefined || desiredText == task.$text)) return;
+export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTaskItem | MarkdownListItem, desiredStatus: string, desiredText?: string) {
+    if ((task instanceof MarkdownTaskItem && desiredStatus == task.$status) && (desiredText == undefined || desiredText == task.$text)) return;
     desiredStatus = desiredStatus == "" ? " " : desiredStatus;
 
     let rawFiletext = await vault.adapter.read(task.$file);
@@ -102,21 +102,22 @@ export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTa
     let match = LIST_ITEM_REGEX.exec(filetext[task.$line]);
     if (!match || match[2].length == 0) return;
 
-    let taskTextParts = task.$text.split("\n");
+    let taskTextParts = task.$text!.split("\n");
     // if (taskTextParts[0].trim() != match[3].trim()) return;
 
     // We have a positive match here at this point, so go ahead and do the rewrite of the status.
+		const statusPart = task instanceof MarkdownTaskItem ? `[${desiredStatus}]` : ""
     let initialSpacing = /^[\s>]*/u.exec(filetext[task.$line])!![0];
     if (desiredText) {
         let desiredParts = desiredText.split("\n");
 
-        let newTextLines: string[] = [`${initialSpacing}${task.$symbol} [${desiredStatus}] ${desiredParts[0]}`].concat(
+        let newTextLines: string[] = [`${initialSpacing}${task.$symbol} ${statusPart} ${desiredParts[0]}`].concat(
             desiredParts.slice(1).map((l) => initialSpacing + "\t" + l.trimStart())
         );
 
-        filetext.splice(task.$line, task.$text.split("\n").length, ...newTextLines);
+        filetext.splice(task.$line, task.$text!.split("\n").length, ...newTextLines);
     } else {
-        filetext[task.$line] = `${initialSpacing}${task.$symbol} [${desiredStatus}] ${taskTextParts[0].trim()}`;
+        filetext[task.$line] = `${initialSpacing}${task.$symbol} ${statusPart} ${taskTextParts[0].trim()}`;
     }
 
     let newText = filetext.join(hasRN ? "\r\n" : "\n");
@@ -136,7 +137,7 @@ export async function completeTask(completed: boolean, task: MarkdownTaskItem, v
     for (const t of tasksToComplete) {
         let newText = setTaskCompletion(
             t,
-            t.$text,
+            t.$text!,
             core.settings.taskCompletionUseEmojiShorthand,
             core.settings.taskCompletionText,
             core.settings.defaultDateFormat,
