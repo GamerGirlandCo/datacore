@@ -622,13 +622,7 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
     get fields() {
         return MarkdownListItem.FIELD_DEF(this);
     }
-
-    /** return text without annotations + indentation */
-    get $cleanText() {
-        return this.$text?.replace(/(.*?)([\[\(][^:(\[]+::\s*.*?[\]\)]\s*)$/gm, "$1")
-            .replace(/^[\t\f\v\s]*[\-\*+]\s(\[.\])?/gm, "")
-            .trimEnd() || ""; //.replace(/^$/gm, "")
-    }
+ 
     /** Fetch a specific field by key. */
     public field(key: string) {
         return MarkdownListItem.FIELD_DEF(this, key)?.[0];
