@@ -46,10 +46,10 @@ export function TaskList({
     renderer: listRenderer = (item, index) => (
         <EditableListElement<string>
             onUpdate={useListItemEditing(item)}
-            element={item.$text!}
+            element={item.$cleantext!}
 						file={item.$file}
-						editorProps={{inline: false}}
-            editor={(it) => ControlledEditableTextField}
+						editorProps={{markdown: true, sourcePath: item.$file}}
+            editor={(it) => TextEditable}
         />
     ),
     ...rest
