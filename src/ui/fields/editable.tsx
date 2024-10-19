@@ -152,7 +152,7 @@ export function ControlledEditable<T, P = unknown>({
         inline: false,
         isEditing: false,
     }));
-    return <Editor {...props} {...state} />;
+    return <Editor dispatch={dispatch} {...props} {...state} />;
 }
 
 /** A single selectable value.
