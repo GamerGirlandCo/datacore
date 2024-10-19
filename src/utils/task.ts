@@ -100,7 +100,7 @@ export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTa
 
     if (filetext.length < task.$line) return;
     let match = LIST_ITEM_REGEX.exec(filetext[task.$line]);
-    if (!match || match[2].length == 0) return;
+    if (!match || match[2]?.length == 0) return;
 
     let taskTextParts = task.$text!.split("\n");
     // if (taskTextParts[0].trim() != match[3].trim()) return;
