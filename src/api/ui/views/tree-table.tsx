@@ -422,19 +422,22 @@ export function TreeTableRowCell<T>({
     level: number;
     isFirst: boolean;
 }) {
-    const value = useMemo(() => column.value(row.value), [row, column.value]);
+    const value = useMemo(() => column.value(row.value), [row.value, column.value]);
     const [editableState, dispatch] = useEditableDispatch<typeof value>({
         content: value,
         isEditing: false,
         updater: (v) => column.onUpdate && column.onUpdate(v, row.value),
     });
+		useEffect(() => {
+			dispatch({type: "content-changed", newValue: value})
+		}, [value])
     const renderable = useMemo(() => {
         if (column.render) {
             let r = column.render(editableState.content, row.value);
             if (r && typeof r == "object" && "props" in r) return { ...r, props: { ...r.props, dispatch } };
             return r;
         } else return value;
-    }, [row, column.render, value]);
+    }, [column.render, value, editableState.content]);
 
     const rendered = useAsElement(renderable);
 
@@ -444,7 +447,7 @@ export function TreeTableRowCell<T>({
         else e = null;
         if (e) return { ...e, props: { ...e.props, dispatch } };
         return e;
-    }, [row, column.editor, column.editable, value]);
+    }, [column.editor, column.editable, editableState.content]);
 
     return (
         <td
