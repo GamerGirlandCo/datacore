@@ -7,7 +7,7 @@ import { Datacore } from "index/datacore";
 import { SearchResult } from "index/datastore";
 import { IndexQuery } from "index/types/index-query";
 import { Indexable } from "index/types/indexable";
-import { MarkdownCodeblock, MarkdownPage } from "index/types/markdown";
+import { MarkdownPage } from "index/types/markdown";
 import { App } from "obsidian";
 import { useFileMetadata, useFullQuery, useIndexUpdates, useInterning, useQuery } from "ui/hooks";
 import * as luxon from "luxon";
