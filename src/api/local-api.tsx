@@ -349,4 +349,5 @@ export class DatacoreLocalApi {
 		public FieldSwitch = FieldSwitch;
 		public TextField = EditableTextField;
 		public VanillaTextBox = ControlledEditableTextField;
+		public FieldTextbox = EditableTextField;
 }

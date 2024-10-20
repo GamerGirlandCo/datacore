@@ -14,9 +14,9 @@ import { MarkdownListItem, MarkdownTaskItem } from "index/types/markdown";
 import { BooleanEditable } from "./boolean-field";
 import { ProgressEditable } from "./progress-field";
 import { RatingEditable } from "./rating";
+import { useFinalizer } from "utils/fields";
 
 import "./fields.css";
-import { useFinalizer } from "utils/fields";
 
 /** Core state for tracking an editable object.
  * @group States
@@ -410,7 +410,6 @@ export function UncontrolledTextEditable({
         <input className="datacore-editable" type="text" onChange={onChangeCb} onKeyUp={onInput} />
     );
 }
-
 /** An editable list of items.
  *
  * @group Editable Components

@@ -6,7 +6,6 @@ import { createElement, render } from "preact";
 import { DEFAULT_SETTINGS, Settings } from "settings";
 import { DatacoreQueryView as DatacoreJSView, DatacoreQueryView, VIEW_TYPE_DATACOREJS } from "ui/view-page";
 import { IndexStatusBar } from "ui/index-status";
-import { VIEW_TYPE_DATACORE } from "ui/DatacoreQueryView";
 
 /** Reactive data engine for your Obsidian.md vault. */
 export default class DatacorePlugin extends Plugin {
@@ -77,18 +76,7 @@ export default class DatacorePlugin extends Plugin {
         } else {
             this.core.initialize();
         }
-
-        this.addCommand({
-            id: "datacore-add-view-page",
-            name: "Create View Page",
-            callback: () => {
-                const newLeaf = this.app.workspace.getLeaf("tab");
-                newLeaf.setViewState({ type: VIEW_TYPE_DATACORE, active: true });
-                this.app.workspace.setActiveLeaf(newLeaf, { focus: true });
-                (newLeaf.view as DatacoreQueryView);
-            },
-        });
-
+ 
         // Make the API globally accessible from any context.
         window.datacore = this.api;
 
@@ -188,6 +176,14 @@ class GeneralSettingsTab extends PluginSettingTab {
             .addToggle((toggle) => {
                 toggle.setValue(this.plugin.settings.scrollOnPageChange).onChange(async (value) => {
                     await this.plugin.updateSettings({ scrollOnPageChange: value });
+                });
+            });
+        new Setting(this.containerEl)
+            .setName("Enable Javascript")
+            .setDesc("Whether Javascript codeblocks will be evaluated.")
+            .addToggle((toggle) => {
+                toggle.setValue(this.plugin.settings.enableJs).onChange(async (value) => {
+                    await this.plugin.updateSettings({ enableJs: value });
                 });
             });
 
@@ -291,8 +287,16 @@ class GeneralSettingsTab extends PluginSettingTab {
                     await this.plugin.updateSettings({ maxRecursiveRenderDepth: parsed });
                 });
             });
+        new Setting(this.containerEl)
+            .setName("Recursive subtask completion")
+            .setDesc("Whether or not subtasks should be completed along with their parent in datacore task views")
+            .addToggle((tb) => {
+                tb.setValue(this.plugin.settings.recursiveTaskCompletion).onChange(async (val) => {
+                    await this.plugin.updateSettings({ recursiveTaskCompletion: val });
+                });
+            });
 
-        this.containerEl.createEl("h2", {text: "Tasks"});
+        this.containerEl.createEl("h2", { text: "Tasks" });
 
         new Setting(this.containerEl)
             .setName("Task Completion Text")
@@ -312,14 +316,6 @@ class GeneralSettingsTab extends PluginSettingTab {
             .addToggle((tb) => {
                 tb.setValue(this.plugin.settings.taskCompletionUseEmojiShorthand).onChange(async (val) => {
                     await this.plugin.updateSettings({ taskCompletionUseEmojiShorthand: val });
-                });
-            });
-        new Setting(this.containerEl)
-            .setName("Recursive subtask completion")
-            .setDesc("Whether or not subtasks should be completed along with their parent in datacore task views")
-            .addToggle((tb) => {
-                tb.setValue(this.plugin.settings.recursiveTaskCompletion).onChange(async (val) => {
-                    await this.plugin.updateSettings({ recursiveTaskCompletion: val });
                 });
             });
     }

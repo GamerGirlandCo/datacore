@@ -434,7 +434,7 @@ export function TreeTableRowCell<T>({
     const [editableState, dispatch] = useEditableDispatch<typeof value>({
         content: value,
         isEditing: false,
-        updater,
+        updater: (v) => column.onUpdate && column.onUpdate(v, row.value),
     });
 		useEffect(() => {
 			dispatch({type: "content-changed", newValue: value})

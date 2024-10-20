@@ -173,14 +173,13 @@ export function markdownSourceImport(
 
         const item = new ListItemData(
             list.position.start.line,
-            list.position.end.line,
+            list.position.end.line + 1,
             list.parent,
             symbol,
             list.id,
             list.task,
             text
         );
-
         listItems.set(item.start, item);
     }
 
