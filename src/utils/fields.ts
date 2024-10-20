@@ -14,9 +14,9 @@ export function useSetField<T extends Literal>(field: Field, onChange?: (newValu
     const app = useContext(APP_CONTEXT);
     return useCallback(
         (newValue: T) => {
-						editProvenance(app, field.provenance!, newValue).then(() => {
-							if (onChange) onChange(newValue);
-						}); 
+            editProvenance(app, field.provenance!, newValue).then(() => {
+                if (onChange) onChange(newValue);
+            });
         },
         [field, onChange]
     );
