@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 /**
  * @module views
  */
 import { VNode } from "preact";
 import { PropsWithChildren } from "preact/compat";
 import { useControlledState } from "ui/hooks";
-=======
-import { ComponentChildren, VNode } from "preact";
-import { memo, useRef } from "preact/compat";
-import { useControlledState, useStableCallback } from "ui/hooks";
-import "./callout.css";
->>>>>>> e1e99ac (re-add animation?)
 
 import "./callout.css";
 import { combineClasses } from "../basics";
@@ -55,25 +48,6 @@ export function Callout({
 }: PropsWithChildren<CalloutProps>) {
     const [open, setOpen] = useControlledState(initialOpen ?? true, openProp, onOpenChange);
 
-<<<<<<< HEAD
-=======
-    const cnames = ["datacore", "callout"];
-    if (collapsible) cnames.push("is-collapsible");
-
-    let foldCnames = ["callout-fold"];
-    if (!open) {
-        foldCnames.push("is-collapsed");
-        cnames.push("is-collapsed");
-    } else {
-        foldCnames.remove("is-collapsed");
-        cnames.remove("is-collapsed");
-    }
-		const contentRef = useRef<HTMLDivElement>(null)
-		const toggle = useStableCallback(() => {
-			contentRef.current && (contentRef.current.style.height = !open ? "0" : contentRef.current?.scrollHeight.toString())
-			setOpen(!open)
-		}, [open, collapsible])
->>>>>>> e1e99ac (re-add animation?)
     return (
         <div
             data-callout-metadata={type?.split(METADATA_SPLIT_REGEX)?.[1]}
@@ -81,13 +55,8 @@ export function Callout({
             data-callout-fold={open ? "+" : "-"}
             className={combineClasses("datacore", "callout", collapsible ? "is-collapsible" : undefined)}
         >
-<<<<<<< HEAD
             <div className="callout-title" onClick={() => collapsible && setOpen(!open)}>
                 {icon && <div className="callout-icon">{icon}</div>}
-=======
-            <div className="callout-title" onClick={() => collapsible && toggle()}>
-                {icon}
->>>>>>> e1e99ac (re-add animation?)
                 <div className="callout-title-inner">{title}</div>
                 {collapsible && (
                     <div className={combineClasses("callout-fold", !open ? "is-collapsed" : undefined)}>
@@ -108,11 +77,7 @@ export function Callout({
                     </div>
                 )}
             </div>
-<<<<<<< HEAD
             {open && <div className="callout-content">{children}</div>}
-=======
-            <div ref={contentRef} className="callout-content">{open ? children : null}</div>
->>>>>>> e1e99ac (re-add animation?)
         </div>
     );
 }
