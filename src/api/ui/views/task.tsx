@@ -8,23 +8,20 @@ import { useStableCallback } from "ui/hooks";
 import { Fragment } from "preact";
 import { APP_CONTEXT, DATACORE_CONTEXT } from "ui/markdown";
 import { JSXInternal } from "preact/src/jsx";
-import { Dispatch, useContext, useMemo, useRef, useState } from "preact/hooks";
+import { Dispatch, useContext, useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { completeTask, rewriteTask } from "utils/task";
 import { Literal, Literals } from "expression/literal";
 import {
     EditableAction,
-    EditableElement,
     EditableListField,
     EditableState,
     TextEditable,
-    UncontrolledTextEditable,
     useEditableDispatch,
 } from "ui/fields/editable";
 import { setInlineField } from "index/import/inline-field";
 import { Field } from "expression/field";
 import { DateTime } from "luxon";
 import "styles/lists.css";
-import { ControlledEditableTextField } from "ui/fields/editable-fields";
 
 /**
  * Props passed to the task list component.
@@ -128,13 +125,16 @@ export function Task({ item, state: props }: { item: MarkdownTaskItem; state: Ta
         [eState.content, item, props.rows]
     );
 
-    const [collapsed, setCollapsed] = useState<boolean>(true);
+    const [collapsed, setCollapsed] = useState<boolean>(false);
     const hasChildren = item.$elements.length > 0;
+    useEffect(() => {
+        setCollapsed(!collapsed);
+    }, []);
 
     return (
         <li className={"datacore task-list-item" + (checked ? " is-checked" : "")} data-task={status}>
             <CollapseIndicator
-                onClick={() => setCollapsed(!collapsed)}
+                onClick={() => setCollapsed((c) => !c)}
                 collapsed={collapsed}
                 hasChildren={hasChildren}
             />
