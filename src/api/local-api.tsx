@@ -23,7 +23,7 @@ import { Button, Checkbox, Icon, Slider, Switch, Textbox, VanillaSelect } from "
 import { VanillaTable } from "./ui/views/table";
 import { Callout } from "./ui/views/callout";
 import { TaskList } from "./ui/views/task";
-import { Card } from "./ui/views/card";
+import { Card } from "./ui/views/cards";
 import { DataArray } from "./data-array";
 import { Coerce } from "./coerce";
 import { ScriptCache } from "./script-cache";
