@@ -180,7 +180,6 @@ export function markdownSourceImport(
             list.task,
             text
         );
-
         listItems.set(item.start, item);
     }
 
