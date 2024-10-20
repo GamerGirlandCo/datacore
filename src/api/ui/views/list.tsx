@@ -7,7 +7,14 @@ import { APP_CONTEXT, CURRENT_FILE_CONTEXT, DATACORE_CONTEXT, Lit } from "ui/mar
 import { VNode, isValidElement } from "preact";
 import { useContext, useMemo } from "preact/hooks";
 import { BaseFieldProps } from "ui/fields/common-props";
-import { ControlledEditable, Editable, EditableElement, EditableState, TextEditable, useEditableDispatch } from "ui/fields/editable";
+import {
+    ControlledEditable,
+    Editable,
+    EditableElement,
+    EditableState,
+    TextEditable,
+    useEditableDispatch,
+} from "ui/fields/editable";
 import { useStableCallback } from "ui/hooks";
 import { MarkdownListItem, MarkdownTaskItem } from "index/types/markdown";
 import { rewriteTask } from "utils/task";
@@ -120,16 +127,23 @@ export function EditableListElement<T>({
     element: item,
     editor,
     onUpdate,
-		file,
-		editorProps
+    file,
+    editorProps,
 }: {
-    editor: (value: T) =>EditableElement<T>; 
+    editor: (value: T) => EditableElement<T>;
     element: T;
-		file: string;
+    file: string;
     onUpdate: (value: T) => unknown;
-		editorProps: unknown;
-}) { 
+    editorProps: unknown;
+}) {
     return (
-			<ControlledEditable<T> props={editorProps} sourcePath={file} content={item} editor={editor(item)} onUpdate={onUpdate} defaultRender={<DefaultListElement element={item}/>} />
+        <ControlledEditable<T>
+            props={editorProps}
+            sourcePath={file}
+            content={item}
+            editor={editor(item)}
+            onUpdate={onUpdate}
+            defaultRender={<DefaultListElement element={item} />}
+        />
     );
 }

@@ -15,7 +15,14 @@ import {
     Taggable,
 } from "index/types/indexable";
 import { DateTime } from "luxon";
-import { Extractors, FIELDBEARING_TYPE, Field, FieldExtractor, Fieldbearing, Fieldbearings } from "../../expression/field";
+import {
+    Extractors,
+    FIELDBEARING_TYPE,
+    Field,
+    FieldExtractor,
+    Fieldbearing,
+    Fieldbearings,
+} from "../../expression/field";
 import { InlineField, jsonInlineField, valueInlineField } from "index/import/inline-field";
 import {
     LineSpan,
@@ -565,7 +572,7 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
     $symbol?: string;
     /** The text contents of the list item. */
     $text?: string;
- 
+
     /** Create a list item from a serialized object. */
     static from(
         object: JsonMarkdownListItem,
@@ -622,7 +629,7 @@ export class MarkdownListItem implements Indexable, Linkbearing, Taggable, Field
     get fields() {
         return MarkdownListItem.FIELD_DEF(this);
     }
- 
+
     /** Fetch a specific field by key. */
     public field(key: string) {
         return MarkdownListItem.FIELD_DEF(this, key)?.[0] ?? Fieldbearings.getWithDefault(this, key);

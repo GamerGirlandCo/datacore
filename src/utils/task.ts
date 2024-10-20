@@ -6,8 +6,6 @@ import { MarkdownPage, MarkdownSection, MarkdownBlock, MarkdownListItem, Markdow
 import { DateTime } from "luxon";
 import { Vault } from "obsidian";
 
- 
-
 export function parseDotField(raw: string, obj: any) {
     if (obj === null) return obj;
     if (raw.contains("."))
@@ -89,14 +87,24 @@ export function setTaskCompletion(
 export const LIST_ITEM_REGEX = /^[\s>]*(\d+\.|\d+\)|\*|-|\+)\s*(\[.{0,1}\])?\s*(.*)$/mu;
 
 /** Rewrite a task with the given completion status and new text. */
-export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTaskItem | MarkdownListItem, desiredStatus: string, desiredText?: string) {
-    if ((task instanceof MarkdownTaskItem && desiredStatus == task.$status) && (desiredText == undefined || desiredText == task.$text)) return;
+export async function rewriteTask(
+    vault: Vault,
+    core: Datacore,
+    task: MarkdownTaskItem | MarkdownListItem,
+    desiredStatus: string,
+    desiredText?: string
+) {
+    if (
+        task instanceof MarkdownTaskItem &&
+        desiredStatus == task.$status &&
+        (desiredText == undefined || desiredText == task.$text)
+    )
+        return;
     desiredStatus = desiredStatus == "" ? " " : desiredStatus;
 
     let rawFiletext = await vault.adapter.read(task.$file);
     let hasRN = rawFiletext.contains("\r");
     let filetext = rawFiletext.split(/\r\n|\r|\n/u);
-
 
     if (filetext.length < task.$line) return;
     let match = LIST_ITEM_REGEX.exec(filetext[task.$line]);
@@ -106,7 +114,7 @@ export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTa
     // if (taskTextParts[0].trim() != match[3].trim()) return;
 
     // We have a positive match here at this point, so go ahead and do the rewrite of the status.
-		const statusPart = task instanceof MarkdownTaskItem ? `[${desiredStatus}]` : ""
+    const statusPart = task instanceof MarkdownTaskItem ? `[${desiredStatus}]` : "";
     let initialSpacing = /^[\s>]*/u.exec(filetext[task.$line])!![0];
     if (desiredText) {
         let desiredParts = desiredText.split("\n");
@@ -122,8 +130,8 @@ export async function rewriteTask(vault: Vault, core: Datacore, task: MarkdownTa
 
     let newText = filetext.join(hasRN ? "\r\n" : "\n");
     await vault.adapter.write(task.$file, newText);
-		const tfile = vault.getFileByPath(task.$file)
-		if(tfile) core.reload(tfile)
+    const tfile = vault.getFileByPath(task.$file);
+    if (tfile) core.reload(tfile);
 }
 export async function completeTask(completed: boolean, task: MarkdownTaskItem, vault: Vault, core: Datacore) {
     const tasksToComplete = [task];

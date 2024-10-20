@@ -52,7 +52,7 @@ export interface EditableProps<T> {
 
 type EditableElementProps<T, P> = EditableState<T> & P;
 export type EditableElement<T, P = any> = FunctionComponent<EditableElementProps<T, P> & P>;
-    
+
 /**
  *  Actions which update/change the state of an editable.
  *
@@ -137,14 +137,14 @@ export function ControlledEditable<T, P = unknown>({
     editor: Editor,
     onUpdate,
     content,
-		props,
-		sourcePath
+    props,
+    sourcePath,
 }: Omit<EditableProps<T>, "dispatch" | "state" | "editor"> & {
     onUpdate: (v: T) => unknown;
     content: T;
     editor: EditableElement<T, P>;
-		props: P;
-		sourcePath: string;
+    props: P;
+    sourcePath: string;
 }) {
     const [state, dispatch] = useEditableDispatch<T>(() => ({
         updater: onUpdate,
