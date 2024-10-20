@@ -4,7 +4,11 @@ import { DateTime } from "luxon";
 import { App, Plugin, PluginSettingTab, Setting } from "obsidian";
 import { createElement, render } from "preact";
 import { DEFAULT_SETTINGS, Settings } from "settings";
+<<<<<<< HEAD
 import { DatacoreQueryView as DatacoreJSView, DatacoreQueryView, VIEW_TYPE_DATACOREJS } from "ui/view-page";
+=======
+import { DatacoreQueryView as DatacoreJSView, VIEW_TYPE_DATACOREJS } from "ui/view-page";
+>>>>>>> feat/tasks
 import { IndexStatusBar } from "ui/index-status";
 import { VIEW_TYPE_DATACORE } from "ui/DatacoreQueryView";
 
@@ -190,6 +194,14 @@ class GeneralSettingsTab extends PluginSettingTab {
                     await this.plugin.updateSettings({ scrollOnPageChange: value });
                 });
             });
+        new Setting(this.containerEl)
+            .setName("Enable Javascript")
+            .setDesc("Whether Javascript codeblocks will be evaluated.")
+            .addToggle((toggle) => {
+                toggle.setValue(this.plugin.settings.enableJs).onChange(async (value) => {
+                    await this.plugin.updateSettings({ enableJs: value });
+                });
+            });
 
         this.containerEl.createEl("h2", { text: "Formatting" });
 
@@ -291,8 +303,21 @@ class GeneralSettingsTab extends PluginSettingTab {
                     await this.plugin.updateSettings({ maxRecursiveRenderDepth: parsed });
                 });
             });
+<<<<<<< HEAD
 
         this.containerEl.createEl("h2", {text: "Tasks"});
+=======
+        new Setting(this.containerEl)
+            .setName("Recursive subtask completion")
+            .setDesc("Whether or not subtasks should be completed along with their parent in datacore task views")
+            .addToggle((tb) => {
+                tb.setValue(this.plugin.settings.recursiveTaskCompletion).onChange(async (val) => {
+                    await this.plugin.updateSettings({ recursiveTaskCompletion: val });
+                });
+            });
+
+        this.containerEl.createEl("h2", { text: "Tasks" });
+>>>>>>> feat/tasks
 
         new Setting(this.containerEl)
             .setName("Task Completion Text")
@@ -314,6 +339,7 @@ class GeneralSettingsTab extends PluginSettingTab {
                     await this.plugin.updateSettings({ taskCompletionUseEmojiShorthand: val });
                 });
             });
+<<<<<<< HEAD
         new Setting(this.containerEl)
             .setName("Recursive subtask completion")
             .setDesc("Whether or not subtasks should be completed along with their parent in datacore task views")
@@ -322,5 +348,7 @@ class GeneralSettingsTab extends PluginSettingTab {
                     await this.plugin.updateSettings({ recursiveTaskCompletion: val });
                 });
             });
+=======
+>>>>>>> feat/tasks
     }
 }

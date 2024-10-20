@@ -39,6 +39,8 @@ import {
 import { completeTask } from "utils/task";
 import { TreeTableView } from "./ui/views/tree-table";
 
+
+
 /** Local API provided to specific codeblocks when they are executing.
  * @group Core
  */
@@ -349,4 +351,7 @@ export class DatacoreLocalApi {
 		public FieldSwitch = FieldSwitch;
 		public TextField = EditableTextField;
 		public VanillaTextBox = ControlledEditableTextField;
+		public EditableFieldCheckbox = EditableFieldCheckbox;
+		public EditableFieldTextbox = EditableTextField;
+		public TextEditor = ControlledEditableTextField;
 }
