@@ -1,11 +1,7 @@
 /**
  * @module ui
  */
-<<<<<<< HEAD
 import { ComponentType, Fragment, FunctionComponent, VNode } from "preact";
-=======
-import { Fragment, FunctionComponent, VNode } from "preact";
->>>>>>> feat/tasks
 import { Dispatch, Reducer, useContext, useEffect, useMemo, useRef, useState } from "preact/hooks";
 import { ChangeEvent, useReducer } from "preact/compat";
 import Select, { ActionMeta } from "react-select";
@@ -21,7 +17,6 @@ import { RatingEditable } from "./rating";
 import { useFinalizer } from "utils/fields";
 
 import "./fields.css";
-import { useFinalizer } from "utils/fields";
 
 /** Core state for tracking an editable object.
  * @group States
@@ -385,10 +380,6 @@ export function TextEditable(props: EditableState<string> & { markdown?: boolean
     );
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> feat/tasks
 export function UncontrolledTextEditable({
     inline,
     text,
@@ -419,10 +410,6 @@ export function UncontrolledTextEditable({
         <input className="datacore-editable" type="text" onChange={onChangeCb} onKeyUp={onInput} />
     );
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> feat/tasks
 /** An editable list of items.
  *
  * @group Editable Components
