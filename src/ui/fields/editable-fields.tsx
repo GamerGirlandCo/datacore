@@ -7,7 +7,7 @@ import Select from "react-select";
 export function FieldCheckbox(
     props: {
         className?: string;
-				field: Field;
+        field: Field;
         defaultChecked?: boolean;
         dispatch: Dispatch<EditableAction<Field>>;
     } & React.HTMLProps<HTMLInputElement>
@@ -27,7 +27,7 @@ export function FieldCheckbox(
 }
 
 export function EditableTextField(props: {
-		field: Field;
+    field: Field;
     inline: boolean;
     defaultValue: string;
     dispatch: Dispatch<EditableAction<string>>;
@@ -74,7 +74,7 @@ export function FieldSlider(
         max: number;
         step: number;
         defaultValue: number;
-				field: Field;
+        field: Field;
         dispatch: Dispatch<EditableAction<Field>>;
     } & Omit<React.HTMLProps<HTMLInputElement>, Omittable>
 ) {
@@ -101,7 +101,7 @@ export function FieldSwitch(
         className?: string;
         disabled?: boolean;
         defaultValue: boolean;
-				field: Field;
+        field: Field;
         dispatch: Dispatch<EditableAction<Field>>;
     } & Omit<React.HTMLProps<HTMLInputElement>, Omittable>
 ) {
@@ -127,22 +127,25 @@ export function FieldSelect({
 }: {
     multi?: boolean;
     defaultValue: string | string[];
-				field: Field;
+    field: Field;
     options: { value: string; label: string }[];
     dispatch: Dispatch<EditableAction<Field>>;
 }) {
     const innerCallback = useSetField(field, (b) =>
         dispatch({ type: "content-changed", newValue: { ...field, value: b } })
     );
-    const onChange = useCallback((newValue: any) => {
-        let normalized;
-        if (Array.isArray(newValue)) {
-            normalized = newValue.map((x) => x.value);
-        } else {
-            normalized = newValue.value;
-        }
-        innerCallback(normalized);
-    }, [field, innerCallback]);
+    const onChange = useCallback(
+        (newValue: any) => {
+            let normalized;
+            if (Array.isArray(newValue)) {
+                normalized = newValue.map((x) => x.value);
+            } else {
+                normalized = newValue.value;
+            }
+            innerCallback(normalized);
+        },
+        [field, innerCallback]
+    );
 
     const arrayVal = useMemo(
         () => (Array.isArray(field?.value) ? field.value : !!field ? [field.value] : [defaultValue]),

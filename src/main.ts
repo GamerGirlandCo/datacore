@@ -76,7 +76,7 @@ export default class DatacorePlugin extends Plugin {
         } else {
             this.core.initialize();
         }
- 
+
         // Make the API globally accessible from any context.
         window.datacore = this.api;
 

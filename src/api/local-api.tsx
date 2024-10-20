@@ -32,14 +32,12 @@ import {
     ControlledEditableTextField,
     FieldCheckbox,
     EditableTextField,
-		FieldSlider,
-		FieldSelect,
-		FieldSwitch,
+    FieldSlider,
+    FieldSelect,
+    FieldSwitch,
 } from "ui/fields/editable-fields";
 import { completeTask } from "utils/task";
 import { TreeTableView } from "./ui/views/tree-table";
-
-
 
 /** Local API provided to specific codeblocks when they are executing.
  * @group Core
@@ -161,16 +159,16 @@ export class DatacoreLocalApi {
         return DataArray.wrap(input);
     }
 
-		/** Sets the text of a given task programmatically. */
+    /** Sets the text of a given task programmatically. */
 
-		public setTaskText(newText: string, task: MarkdownTaskItem): void  {
-			setTaskText(this.app, this.core, newText, task);
-		}
+    public setTaskText(newText: string, task: MarkdownTaskItem): void {
+        setTaskText(this.app, this.core, newText, task);
+    }
 
-		/** Sets the completion status of a given task programmatically. */
-		public setTaskCompletion(completed: boolean, task: MarkdownTaskItem): void {
-			completeTask(completed, task, this.app.vault, this.core)
-		}
+    /** Sets the completion status of a given task programmatically. */
+    public setTaskCompletion(completed: boolean, task: MarkdownTaskItem): void {
+        completeTask(completed, task, this.app.vault, this.core);
+    }
 
     /////////////
     //  Hooks  //
@@ -186,9 +184,9 @@ export class DatacoreLocalApi {
     public useContext = hooks.useContext;
     public useRef = hooks.useRef;
     public useInterning = useInterning;
-		public useSetField = useSetField;
-		
-    /** Memoize the input automatically and process it using a DataArray; returns a vanilla array back. */
+    public useSetField = useSetField;
+
+    /** Memoize the input automatically and process it using a Data Array; returns a vanilla array back. */
     public useArray<T, U>(input: T[] | DataArray<T>, process: (data: DataArray<T>) => DataArray<U>, deps?: any[]): U[] {
         return hooks.useMemo(() => process(DataArray.wrap(input)).array(), [input, ...(deps ?? [])]);
     }
@@ -327,7 +325,7 @@ export class DatacoreLocalApi {
 
     public TaskList = TaskList;
     public VanillaTable = VanillaTable;
-		public TreeTable = TreeTableView;
+    public TreeTable = TreeTableView;
     public Card = Card;
 
     /////////////////////////
@@ -343,13 +341,12 @@ export class DatacoreLocalApi {
     public VanillaSelect = VanillaSelect;
 
     /////////////////////////
-		//    field editors    //
-		/////////////////////////
-		public FieldCheckbox = FieldCheckbox;
-		public FieldSlider = FieldSlider;
-		public FieldSelect = FieldSelect;
-		public FieldSwitch = FieldSwitch;
-		public TextField = EditableTextField;
-		public VanillaTextBox = ControlledEditableTextField;
-		public FieldTextbox = EditableTextField;
+    //    field editors    //
+    /////////////////////////
+    public FieldCheckbox = FieldCheckbox;
+    public FieldSlider = FieldSlider;
+    public FieldSelect = FieldSelect;
+    public FieldSwitch = FieldSwitch;
+    public TextField = EditableTextField;
+    public VanillaTextBox = ControlledEditableTextField;
 }
