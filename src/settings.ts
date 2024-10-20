@@ -71,8 +71,5 @@ export const DEFAULT_SETTINGS: Readonly<Settings> = Object.freeze<Settings>({
     recursiveTaskCompletion: false,
     taskCompletionText: "completedAt",
     taskCompletionUseEmojiShorthand: false,
-    indexListItems: true,
-		recursiveTaskCompletion: false,
-		taskCompletionText: "completedAt",
-		taskCompletionUseEmojiShorthand: false
+    indexListItems: true,	
 });
